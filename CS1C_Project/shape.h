@@ -8,6 +8,19 @@
 #include <sstream>
 using namespace std;
 
+struct ShapeInfo {
+  int    tempid;
+  string type;
+  int    dimensions[];
+  string pencolor;
+  int    penwidth;
+  string penstyle;
+  string pencap;
+  string penjoin;
+  string brushcolor;
+  string brushstyle;
+ };
+
 class Shape : public QWidget
 {
     Q_OBJECT
@@ -50,7 +63,6 @@ public:
     virtual float calcPerimeter() = 0;
     virtual float calcArea() = 0;
 
-
     void printPerimeter(Shape& s);
     void printArea(Shape& s1);
 
@@ -76,20 +88,6 @@ public slots:
     //    void SetTextFontStyle(QFont::Style);
     //    void SetTextFontWeight(QFont::Weight);
     //    void SetAll(int newId, string newStype, string newDimension, Qt::GlobalColor, int newPWidth, Qt::PenStyle, Qt::PenCapStyle, Qt::PenJoinStyle, Qt::GlobalColor, Qt::BrushStyle, string newText, Qt::GlobalColor, Qt::AlignmentFlag, int newPointSize, string newFont, QFont::Style, QFont::Weight);
-
-protected:
-    struct ShapeInfo {
-        int    tempid;
-        string type;
-        int    dimensions[];
-        string pencolor;
-        int    penwidth;
-        string penstyle;
-        string pencap;
-        string penjoin;
-        string brushcolor;
-        string brushstyle;
-    };
 
     vector<ShapeInfo> currentShape;
 
