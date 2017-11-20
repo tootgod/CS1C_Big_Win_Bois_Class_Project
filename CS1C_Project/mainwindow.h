@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-using std::string;
+#include "shapedrawer.h"
 
 namespace Ui {
 class MainWindow;
@@ -36,8 +36,12 @@ public:
     void SetAll(int newId, string newStype, string newDimension, Qt::GlobalColor, int newPWidth, Qt::PenStyle, Qt::PenCapStyle, Qt::PenJoinStyle, Qt::GlobalColor, Qt::BrushStyle, string newText, Qt::GlobalColor, Qt::AlignmentFlag, int newPointSize, string newFont, QFont::Style, QFont::Weight);
 
 
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
+    ShapeDrawer *fun = new ShapeDrawer();
 };
 
 #endif // MAINWINDOW_H
