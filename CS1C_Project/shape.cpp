@@ -1,5 +1,7 @@
 #include "shape.h"
 
+std::map<std::string, ShapeType> mapShapeType;
+
 Shape::Shape(QWidget *parent) : QWidget(parent)
 {
 
@@ -64,7 +66,7 @@ void  Shape::printArea(Shape& s1) {
 //    }
 //}
 
-void Shape::InitializeMap()
+void InitializeMap()
 {
     mapShapeType["Rectangle"] = RECTANGLE;
     mapShapeType["Polygon"]   = POLYGON;
@@ -83,54 +85,52 @@ void Shape::InitializeMap()
  * specified category.
  * returns - nothing
  ******************************************************************************/
-void Shape::InitializeShapes()
+void InitializeShapes()
 {
-    ifstream inFile;
-    ShapeInfo tempShape;
+    QFile inFile("InputFile.txt");
+    QTextStream fin(&inFile);
     vector<ShapeInfo> temp;
-    stringstream ss;
-    string fileString;
+    ShapeInfo         tempShapes;
+    QString fileString;
     string tempString;
     string token;
     int    tempDim[8];
     int    loopCount;
     char   commaHold;
 
-    inFile.open("ShapeInfo.txt");
     InitializeMap();
     loopCount = 0;
+
 
     /***************************************************************************
     * While Loop - loops through storing all information on the input file into
     * the correct category. Will continue until it reaches the end of the file
     * or the pointer is NULL
     ***************************************************************************/
-    while (inFile)
+    while (!fin.atEnd())
     {
-        getline(inFile, fileString);
-        ss.str(fileString);
-        ss >> tempString >> id;
-        ss.clear();
+        cout << "HERE?\n";
+        fileString = fin.readLine();
+        fileString.remove(0,8);
+        tempShapes.tempid = fileString.toInt();
+        fileString.clear();
 
-        getline(inFile, fileString);
-        ss.str(fileString);
-        ss >> tempString >> tempShape.type;
-        ss.clear();
+        fileString = fin.readLine();
+        fileString.remove(0,10);
+        tempShapes.type = fileString;
+        fileString.clear();
 
-        getline(inFile, tempString, ':');
-        getline(inFile, fileString);
-        istringstream stringSS(fileString);
+        fileString = fin.readLine();
+        fileString.remove(0,16);
 
-        getline(stringSS, token, ',');
-        istringstream intSS(token);
 
-        while (intSS >> tempDim[loopCount] >> commaHold)
-        {
-            getline(stringSS, token, ',');
-            istringstream intSS(token);
+//        while (intSS >> tempDim[loopCount] >> commaHold)
+//        {
+//            getline(stringSS, token, ',');
+//            istringstream intSS(token);
 
-            loopCount++;
-        }
+//            loopCount++;
+//        }
 
         for (int index = 0; index < 4; index++)
         {
@@ -159,6 +159,7 @@ void Shape::InitializeShapes()
 
     }
 }
+
 
 
 

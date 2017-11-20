@@ -6,28 +6,46 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <QFile>
+#include <QTextStream>
+
 using namespace std;
 
 struct ShapeInfo {
-  int    tempid;
-  string type;
-  int    dimensions[];
-  string pencolor;
-  int    penwidth;
-  string penstyle;
-  string pencap;
-  string penjoin;
-  string brushcolor;
-  string brushstyle;
- };
+    int    tempid;
+    QString type;
+    int    dimensions[];
+    string pencolor;
+    int    penwidth;
+    string penstyle;
+    string pencap;
+    string penjoin;
+    string brushcolor;
+    string brushstyle;
+};
+
+
+enum ShapeType {
+    LINE,
+    POLYLINE,
+    POLYGON,
+    RECTANGLE,
+    SQUARE,
+    ELLIPSE,
+    CIRCLE,
+    TEXT
+};
+
+void InitializeShapes();
+void InitializeMaps();
+
 
 class Shape : public QWidget
 {
     Q_OBJECT
 public:
     Shape(QWidget *parent = 0);
-    //enum PenColor { white = 1, black, red, green, blue, cyan, magenta, yellow, gray };
-    //const string COLORS[9] = { "white", "black", "red", "green", "blue", "cyan", "magenta", "yellow", "gray " };
+
     // default constructor
     Shape();
 
@@ -63,34 +81,14 @@ public:
     virtual float calcPerimeter() = 0;
     virtual float calcArea() = 0;
 
+
     void printPerimeter(Shape& s);
     void printArea(Shape& s1);
 
 public slots:
-    //void SetDimensions(int dim[]);
-    void InitializeMap();
-    void InitializeShapes();
-    //    void SetShapeId(int newID);
-    //    void SetShapeType(string newSType);
-    //    void SetShapeDimensions(string newDimension);
-    //    void SetPenColor(Qt::GlobalColor);
-    //    void SetPenWidth(int newPWidth);
-    //    void SetPenStyle(Qt::PenStyle);
-    //    void SetPenCapStyle(Qt::PenCapStyle);
-    //    void SetPenJoinStyle(Qt::PenJoinStyle);
-    //    void SetBrushColor(Qt::GlobalColor);
-    //    void SetBrushStyle(Qt::BrushStyle);
-    //    void SetTextString(string newText);
-    //    void SetTextColor(Qt::GlobalColor);
-    //    void SetTextAlignment(Qt::AlignmentFlag);
-    //    void SetTextPointSize(int newPointSize);
-    //    void SetTextFontFamily(string newFont);
-    //    void SetTextFontStyle(QFont::Style);
-    //    void SetTextFontWeight(QFont::Weight);
     //    void SetAll(int newId, string newStype, string newDimension, Qt::GlobalColor, int newPWidth, Qt::PenStyle, Qt::PenCapStyle, Qt::PenJoinStyle, Qt::GlobalColor, Qt::BrushStyle, string newText, Qt::GlobalColor, Qt::AlignmentFlag, int newPointSize, string newFont, QFont::Style, QFont::Weight);
 
-    vector<ShapeInfo> currentShape;
-
+protected:
     int id;
     int x1;
     int y1;
@@ -100,15 +98,6 @@ public slots:
     int y3;
 
     /*
-    enum PenStyle { NoPen, SolidLine, DashLine, DotLine, DashDotLine, DashDotDotLine };
-    enum PenCapStyle { FlatCap, SquareCap, RoundCap };
-    enum PenJoinStyle { MiterJoin, BevelJoin, RoundJoin };
-    enum BrushColor { white, black, red, green, blue, cyan, magenta, yellow, gray };
-    enum BrushStyle { SolidPattern, HorPattern, VerPattern, NoBrush };
-    enum TextString {};
-    enum TextColor { white, black, red, green, blue, cyan, magenta, yellow, gray };
-    enum TextAlignment { AlignLeft, AlignRight, AlignTop, AlignBottom, AlignCenter };
-
     int textPointerSize() {
         int TextPointSize[51];
         for (int i = -1; i < 52; i++) {
@@ -120,20 +109,6 @@ public slots:
     enum TextFontStyle { StyleNormal, StyleItalic, StyleObliqu };
     enum TextFontWeight { Thin, Light, Normal, Bold };
     */
-
-private:
-    enum ShapeType {
-        LINE,
-        POLYLINE,
-        POLYGON,
-        RECTANGLE,
-        SQUARE,
-        ELLIPSE,
-        CIRCLE,
-        TEXT
-    };
-
-    std::map<std::string, ShapeType> mapShapeType;
 
 };
 
