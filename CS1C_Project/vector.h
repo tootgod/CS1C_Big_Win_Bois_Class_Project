@@ -25,7 +25,23 @@ public:
     {
         for (int i=0; i<size_v; ++i) elem[i] = 0; // elements are initialized
     }
-
+    
+    //sort function
+    //sort and comparison function will determine which comparison to do with function pointer
+    void sort(){
+        for (int j = 0; j < size_v - 1; ++j) {
+            int min = j;
+            for (int i = j+1; i < size_v; ++i) {
+                if (/*funcion pointer to comparison function for id, perim, or area*/) {
+                    min = i;
+                }
+            }
+            if (min != j)
+                swap(sort.at(j), sort.at(min));
+        }
+    }
+    
+    
     vector(const vector& src) : size_v{src.size_v}, elem{new double[src.size_v]}, space{src.space} // copy constructor
     {
         copy(src.elem, src.elem + size_v, elem); 	// copy elements - std::copy() algorithm
