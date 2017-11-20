@@ -52,7 +52,7 @@ public:
     Shape();
 
     // alternative constructor
-    Shape(int x1, int y1, int id_num) : x1(x1), y1(y1), id(id_num){}
+    Shape(ShapeInfo s) : x1{s.dimensions[0]}, y1{s.dimensions[0]}, id{s.tempid}{}
 
     // copy constructor "mark constructor delete"
     Shape(const Shape& obj) = delete;
@@ -138,7 +138,7 @@ return (rhs.obj = obj);
 // class for Rectangle
 class Rectangle : public Shape {
 public:
-    Rectangle(int x1, int y1, int id, int length, int width) : Shape(x1, y1, id), length(length), width(width) {}
+    Rectangle(ShapeInfo s) : Shape(s), length{s.dimension[2]}, width{s.dimension[3]} {}
     float calcPerimeter();
     float calcArea();
     void draw(void) ;
