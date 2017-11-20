@@ -11,8 +11,8 @@ using namespace std;
 struct ShapeInfo {
   int    tempid;
   string type;
-//  int    dimensions[];
-//  string pencolor;
+  int    dimensions[];
+  string pencolor;
   int    penwidth;
   string penstyle;
   string pencap;
