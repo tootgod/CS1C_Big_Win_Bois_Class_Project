@@ -1,8 +1,11 @@
 #include "shapedrawer.h"
 #include "ui_shapedrawer.h"
 #include <QPainter>
-#include "mainwindow.h"
 #include <QString>
+#include <QInputDialog>
+#include <QDir>
+
+int admin = 0;
 
 ShapeDrawer::ShapeDrawer(QWidget *parent) :
     QWidget(parent),
@@ -33,11 +36,6 @@ void ShapeDrawer::on_pushButton_clicked()
     test->show();
 }
 
-void ShapeDrawer::on_createCircle_clicked()
-{
-
-}
-
 void ShapeDrawer::on_generateReport_clicked()
 {
     gene->show();
@@ -45,6 +43,8 @@ void ShapeDrawer::on_generateReport_clicked()
 
 void ShapeDrawer::on_logout_clicked()
 {
+    ui->WholeScreen->setCurrentIndex(1);
+    admin = 0;
 
 }
 
@@ -66,4 +66,24 @@ void ShapeDrawer::on_selectShape_activated(int index)
 void ShapeDrawer::on_selectShape_currentIndexChanged(int index)
 {
     ui->shapeMenu->setCurrentIndex(index);
+}
+
+void ShapeDrawer::on_adminLogin_clicked()
+{
+    bool ok;
+       QString text = QInputDialog::getText(this, tr("Enter Admin Password"),
+                                            tr("Password:"), QLineEdit::Normal,
+                                            QDir::home().dirName(), &ok);
+       if (ok && !text.isEmpty())
+           if(text == "admin")
+           {
+               admin = 1;
+               ui->WholeScreen->setCurrentIndex(0);
+           }
+}
+
+void ShapeDrawer::on_guestLogin_clicked()
+{
+    admin = 0;
+    ui->WholeScreen->setCurrentIndex(0);
 }

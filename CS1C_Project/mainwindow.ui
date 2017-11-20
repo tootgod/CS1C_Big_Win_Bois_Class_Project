@@ -14,30 +14,30 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>160</y>
+      <width>271</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:26pt;&quot;&gt;Graphics Modeler&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>190</y>
-      <width>251</width>
-      <height>231</height>
+      <x>390</x>
+      <y>312</y>
+      <width>191</width>
+      <height>81</height>
      </rect>
     </property>
     <property name="text">
-     <string>Login as Admin</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="guestLogin">
-    <property name="geometry">
-     <rect>
-      <x>210</x>
-      <y>190</y>
-      <width>251</width>
-      <height>231</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Login as Guest</string>
+     <string>Click Here to start</string>
     </property>
    </widget>
   </widget>

@@ -22,8 +22,6 @@ public:
 private slots:
     void on_pushButton_clicked();
 
-    void on_createCircle_clicked();
-
     void on_generateReport_clicked();
 
     void on_logout_clicked();
@@ -35,6 +33,10 @@ private slots:
     void on_selectShape_activated(int index);
 
     void on_selectShape_currentIndexChanged(int index);
+
+    void on_adminLogin_clicked();
+
+    void on_guestLogin_clicked();
 
 private:
     int adminMode = 0;
