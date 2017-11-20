@@ -26,12 +26,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         mainwindow.cpp \
     shape.cpp \
-    main.cpp
+    main.cpp \
+    form.cpp \
+    shapedrawer.cpp \
+    vector.cpp
 
 HEADERS += \
         mainwindow.h \
     shape.h \
-    vector.h
+    vector.h \
+    form.h \
+    shapedrawer.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    form.ui \
+    shapedrawer.ui
