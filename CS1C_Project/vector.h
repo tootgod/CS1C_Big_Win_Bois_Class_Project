@@ -41,6 +41,15 @@ public:
         }
     }
     
+    bool compareID(Shape* s1, Shape* s2){//return true if s1 has a larger id than s2
+        return s1->get_id() > s2->get_id();
+    }
+    bool compareArea(Shape* s1, Shape* s2){//return true if s1 has a larger area than s2
+        return s1->calcArea() > s2->calcArea();
+    }
+    bool comparePerim(Shape* s1, Shape* s2){//return true if s1 has a larger perimeter than s2
+        return s1->calcPerimeter() > s2->calcPerimeter();
+    }
     
     vector(const vector& src) : size_v{src.size_v}, elem{new double[src.size_v]}, space{src.space} // copy constructor
     {
