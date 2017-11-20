@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ShapeDrawer</class>
+ <widget class="QWidget" name="ShapeDrawer">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1003</width>
+    <height>671</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QPushButton" name="createPolygon">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>590</y>
+     <width>101</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Create Polygon</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="createRectangle">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>590</y>
+     <width>101</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Create Rectangle</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="createText">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>560</y>
+     <width>101</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Create Text</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="createPolyline">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>560</y>
+     <width>101</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Create Polyline</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>630</y>
+     <width>21</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>?</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>540</y>
+     <width>1081</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="createLine">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>560</y>
+     <width>101</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Create Line</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="createEllipse">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>590</y>
+     <width>101</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Create Ellipse</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="createSquare">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>620</y>
+     <width>101</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Create Square</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="createCircle">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>620</y>
+     <width>101</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Create Circle</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="generateReport">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>620</y>
+     <width>101</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Generate Report</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
