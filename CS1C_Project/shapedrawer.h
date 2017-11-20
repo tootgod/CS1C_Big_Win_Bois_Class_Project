@@ -16,6 +16,8 @@ class ShapeDrawer : public QWidget
 public:
     explicit ShapeDrawer(QWidget *parent = 0);
     ~ShapeDrawer();
+    void changeMode(int a);
+    bool checkMode();
 
 private slots:
     void on_pushButton_clicked();
@@ -24,10 +26,14 @@ private slots:
 
     void on_generateReport_clicked();
 
+    void on_logout_clicked();
+
 private:
+    int adminMode = 0;
     Ui::ShapeDrawer *ui;
     Form *test = new Form();
     ReportGenerator *gene = new ReportGenerator();
+
 };
 
 #endif // SHAPEDRAWER_H

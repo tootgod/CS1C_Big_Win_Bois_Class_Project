@@ -30,6 +30,7 @@ void MainWindow::on_pushButton_clicked()
            if(text == "admin")
            {
                fun->show();
+               fun->changeMode(1);
                this->hide();
            }
 }
@@ -37,5 +38,6 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::on_guestLogin_clicked()
 {
     fun->show();
+    fun->changeMode(0);
     this->hide();
 }
