@@ -3,7 +3,7 @@
 
 #include "shape.h"
 
-template <class ShapeInfo>
+template <class Shape>
 class vector : public Shape
 {
 /*
@@ -60,7 +60,7 @@ public:
         size_v = newsize;
     }
 
-    void push_back(ShapeInfo newShape)
+    void push_back(Shape newShape)
         // increase vector size by one; initialize the new element with d
     {
         if (space == 0)
