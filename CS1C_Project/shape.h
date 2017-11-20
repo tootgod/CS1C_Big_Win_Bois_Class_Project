@@ -63,6 +63,10 @@ public:
     //string SetCoordinates(string )
 
     void set_id(int id_num);
+    
+    const int get_id() const{
+        return id_num;
+    }
 
     //void set_pen_color(string pen_color)
     int get_x1();

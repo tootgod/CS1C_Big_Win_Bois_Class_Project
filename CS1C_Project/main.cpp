@@ -13,6 +13,12 @@ int main(int argc, char *argv[])
 
     return a.exec();
 }
+  //sort functions
+void sortID(vector<Shape>){
+    
+}
+  //end of sort functions
+
     //------------Do not touch-------------------
   /*  Rectangle rec(10, 20, 1234, 200, 60);
 
