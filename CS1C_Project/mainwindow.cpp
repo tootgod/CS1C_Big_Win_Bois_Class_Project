@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "form.h"
 #include "shapedrawer.h"
+#include <QString>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -18,6 +19,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
+    string password = "admin";
 
     fun->show();
     this->hide();

@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include "shapedrawer.h"
+#include <string>
+using namespace std;
 
 namespace Ui {
 class MainWindow;
@@ -38,6 +40,7 @@ public:
 
 private slots:
     void on_pushButton_clicked();
+    void MainWindow::on_guestLogin_clicked();
 
 private:
     Ui::MainWindow *ui;

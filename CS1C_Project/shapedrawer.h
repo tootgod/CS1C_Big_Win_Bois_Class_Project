@@ -19,7 +19,7 @@ public:
 private slots:
     void on_pushButton_clicked();
 
-    void on_createCircle_clicked(QPaintEvent *event);
+    void on_createCircle_clicked();
 
 private:
     Ui::ShapeDrawer *ui;
