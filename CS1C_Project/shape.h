@@ -7,21 +7,23 @@
 #include <iostream>
 #include <sstream>
 #include <QFile>
+#include <map>
+#include <QtGui>
 #include <QTextStream>
 
 using namespace std;
 
 struct ShapeInfo {
     int    tempid;
-    QString type;
-    int    dimensions[4];
-    string pencolor;
+    string type;
+    int    dimensions[];
+    Qt::GlobalColor pencolor;
     int    penwidth;
-    string penstyle;
-    string pencap;
-    string penjoin;
-    string brushcolor;
-    string brushstyle;
+    Qt::PenStyle penstyle;
+    Qt::PenCapStyle pencap;
+    Qt::PenJoinStyle penjoin;
+    Qt::GlobalColor brushcolor;
+    Qt::BrushStyle brushstyle;
 };
 
 
@@ -36,8 +38,8 @@ enum ShapeType {
     TEXT
 };
 
-void InitializeShapes();
 void InitializeMaps();
+void InitializeShapes();
 
 
 class Shape : public QWidget
@@ -89,6 +91,11 @@ public slots:
     //    void SetAll(int newId, string newStype, string newDimension, Qt::GlobalColor, int newPWidth, Qt::PenStyle, Qt::PenCapStyle, Qt::PenJoinStyle, Qt::GlobalColor, Qt::BrushStyle, string newText, Qt::GlobalColor, Qt::AlignmentFlag, int newPointSize, string newFont, QFont::Style, QFont::Weight);
 
 protected:
+
+    QPen pen;
+    QBrush brush;
+    QFont font;
+
     int id;
     int x1;
     int y1;

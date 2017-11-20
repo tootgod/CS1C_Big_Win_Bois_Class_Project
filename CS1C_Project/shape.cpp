@@ -33,7 +33,7 @@ void  Shape::printArea(Shape& s1) {
     cout << s1.calcArea() << endl;
 }
 
-//void Shape::SetDimensions(int dim[])
+//void Shape::SetDimensions(QString fileString)
 //{
 //    switch (mapShapeType[tempShape.type])
 //    {
@@ -88,19 +88,22 @@ void InitializeMap()
 void InitializeShapes()
 {
     QFile inFile("InputFile.txt");
-    QTextStream fin(&inFile);
     vector<ShapeInfo> temp;
     ShapeInfo         tempShapes;
     QString fileString;
+    QString dimString;
     string tempString;
     string token;
     int    tempDim[8];
-    int    loopCount;
-    char commaHold;
 
     InitializeMap();
-    loopCount = 0;
 
+    if (!inFile.open(QIODevice::ReadOnly))
+    {
+        cout << "The file cannot be found.\n\n";
+    }
+
+     QTextStream fin(&inFile);
 
     /***************************************************************************
     * While Loop - loops through storing all information on the input file into
@@ -109,53 +112,138 @@ void InitializeShapes()
     ***************************************************************************/
     while (!fin.atEnd())
     {
-        cout << "HERE?\n";
+        QColor tempColor;
         fileString = fin.readLine();
-        fileString.remove(0,8);
+        fileString.remove(0,9);
         tempShapes.tempid = fileString.toInt();
         fileString.clear();
 
         fileString = fin.readLine();
-        fileString.remove(0,10);
-        tempShapes.type = fileString;
+        fileString.remove(0,11);
+        tempShapes.type = fileString.toStdString();
         fileString.clear();
 
         fileString = fin.readLine();
         fileString.remove(0,16);
 
-
-//        while (intSS >> tempDim[loopCount] >> commaHold)
-//        {
-//            getline(stringSS, token, ',');
-//            istringstream intSS(token);
-
-//            loopCount++;
-//        }
-
-        for (int index = 0; index < 4; index++)
+        if (tempShapes.type == "Line")
         {
-            cout << tempDim[index];
+            for (int index = 0; index < 4; index++)
+            {
+            dimString = fileString.section(',', index, index);
+            dimString.remove(' ');
+            tempDim[index] = dimString.toInt();
+            }
+            fileString.clear();
+           }
+        else if (tempShapes.type == "Polyline")
+        {
+            for (int index = 0; index < 8; index++)
+            {
+            dimString = fileString.section(',', index, index);
+            dimString.remove(' ');
+            tempDim[index] = dimString.toInt();
+            }
+            fileString.clear();
         }
+        else if (tempShapes.type == "Polygon")
+        {
+            for (int index = 0; index < 8; index++)
+            {
+            dimString = fileString.section(',', index, index);
+            dimString.remove(' ');
+            tempDim[index] = dimString.toInt();
+            }
+            fileString.clear();
+        }
+           else if (tempShapes.type == "Rectangle")
+        {
+            for (int index = 0; index < 4; index++)
+            {
+            dimString = fileString.section(',', index, index);
+            dimString.remove(' ');
+            tempDim[index] = dimString.toInt();
+            }
+            fileString.clear();
+        }
+          else if (tempShapes.type == "Square")
+        {
+            for (int index = 0; index < 3; index++)
+            {
+            dimString = fileString.section(',', index, index);
+            dimString.remove(' ');
+            tempDim[index] = dimString.toInt();
+            }
+            fileString.clear();
+        }
+            else if (tempShapes.type == "Ellipse")
+            {
+                for (int index = 0; index < 4; index++)
+            {
+            dimString = fileString.section(',', index, index);
+            dimString.remove(' ');
+            tempDim[index] = dimString.toInt();
+            }
+                fileString.clear();
+            }
+            else if (tempShapes.type == "Circle")
+            {
+                for (int index = 0; index < 3; index++)
+            {
+            dimString = fileString.section(',', index, index);
+            dimString.remove(' ');
+            tempDim[index] = dimString.toInt();
+            }
+                fileString.clear();
+            }
+            else
+            {
+                for (int index = 0; index < 4; index++)
+            {
+            dimString = fileString.section(',', index, index);
+            dimString.remove(' ');
+            tempDim[index] = dimString.toInt();
+            }
+                fileString.clear();
+            }
 
-//        switch (mapShapeType[tempShape.type])
+        fileString = fin.readLine();
+        fileString.remove(0,10);
+
+        if (fileString.toStdString() == "blue")
+        {
+            tempShapes.pencolor = tempColor("blue");
+        }
+//        else if (fileString.toStdString() == "white")
 //        {
-//        case LINE:
-//            break;
-//        case POLYLINE:
-//            break;
-//        case POLYGON:
-//            break;
-//        case RECTANGLE:
-//            break;
-//        case SQUARE:
-//            break;
-//        case ELLIPSE:
-//            break;
-//        case CIRCLE:
-//            break;
-//        case TEXT:
-//            break;
+//            tempShapes
 //        }
+
+        fileString.clear();
+
+        fileString = fin.readLine();
+        fileString.remove(0,11);
+        tempShapes.type = fileString.toStdString();
+        fileString.clear();
+
+        fileString = fin.readLine();
+        fileString.remove(0,11);
+        tempShapes.type = fileString.toStdString();
+        fileString.clear();
+
+        fileString = fin.readLine();
+        fileString.remove(0,11);
+        tempShapes.type = fileString.toStdString();
+        fileString.clear();
+
+        fileString = fin.readLine();
+        fileString.remove(0,11);
+        tempShapes.type = fileString.toStdString();
+        fileString.clear();
+
+
+           cout << tempDim[0] << "   " << tempDim[1] << "   " << tempDim[2] << "   " << tempDim[3] << endl;
+
 
     }
 }
@@ -164,130 +252,130 @@ void InitializeShapes()
 
 
 //---------------------------Rectangle ----------------------------------
-//float Rectangle::calcPerimeter(){
-//    return ((width + length ) * 2 );
-//}
+float Rectangle::calcPerimeter(){
+    return ((width + length ) * 2 );
+}
 
-//float Rectangle::calcArea(){
-//    return (width * length);
-//}
-//void Rectangle::draw(void) {
-//    // use QPainter object here
-//    cout << "Drawing rect x1:" << x1 << " y1:" << y1 << " length: " << length << " width: " << width << endl;
-//}
-//void Rectangle::move(int dx, int dy) {
-//    x1 += dx;
-//    y1 += dy;
-//}
+float Rectangle::calcArea(){
+    return (width * length);
+}
+void Rectangle::draw(void) {
+    // use QPainter object here
+    cout << "Drawing rect x1:" << x1 << " y1:" << y1 << " length: " << length << " width: " << width << endl;
+}
+void Rectangle::move(int dx, int dy) {
+    x1 += dx;
+    y1 += dy;
+}
 
 
 ////---------------------------Square----------------------------------------
-//float Square::calcPerimeter() {
-//    return (4 * length);
-//}
+float Square::calcPerimeter() {
+    return (4 * length);
+}
 
-//float Square::calcArea() {
-//    return (length * length);
-//}
+float Square::calcArea() {
+    return (length * length);
+}
 
-//void Square::draw(void) {
-//    // use QPainter object here
-//    cout << "Drawing Square x1:" << x1 << " y1:" << y1 << " length: " << length  << endl;
-//}
-//void Square::move(int dx, int dy) {
-//    x1 += dx;
-//    y1 += dy;
-//}
+void Square::draw(void) {
+    // use QPainter object here
+    cout << "Drawing Square x1:" << x1 << " y1:" << y1 << " length: " << length  << endl;
+}
+void Square::move(int dx, int dy) {
+    x1 += dx;
+    y1 += dy;
+}
 
 //// ------------------------Line----------------------------------------------------
 
 
-//float Line::calcPerimeter() {
-//    double dx = x2 - x1;
-//    double dy = y2 - y1;
-//    return sqrt(dx*dx + dy*dy);
-//}
+float Line::calcPerimeter() {
+    double dx = x2 - x1;
+    double dy = y2 - y1;
+    return sqrt(dx*dx + dy*dy);
+}
 
-//float Line::calcArea() {
-//    return 0;
-//}
+float Line::calcArea() {
+    return 0;
+}
 
-//void Line::draw(void) {
-//    // use QPainter object here
-//    cout << "Drawing Line x1:" << x1 << " y1:" << y1 << " x2:" << x2 << " y2 : " << y2 << endl;
-//}
+void Line::draw(void) {
+    // use QPainter object here
+    cout << "Drawing Line x1:" << x1 << " y1:" << y1 << " x2:" << x2 << " y2 : " << y2 << endl;
+}
 
-//void Line::move(int dx, int dy) {
-//    x1 += dx;
-//    y1 += dy;
-//}
+void Line::move(int dx, int dy) {
+    x1 += dx;
+    y1 += dy;
+}
 
 //// ------------------------PolyLine----------------------------------------------------
 
-//float Polyline::calcPerimeter() {
-//    double sum = 0;
-//    for (int i = 0; i < numPoints - 1; i++){
-//        double dx = x_values[i + 1] - x_values[i];
-//        double dy = y_values[i + 1] - y_values[i];
-//        sum += sqrt(dx*dx + dy*dy);
-//    }
-//    return sum;
-//}
+float Polyline::calcPerimeter() {
+    double sum = 0;
+    for (int i = 0; i < numPoints - 1; i++){
+        double dx = x_values[i + 1] - x_values[i];
+        double dy = y_values[i + 1] - y_values[i];
+        sum += sqrt(dx*dx + dy*dy);
+    }
+    return sum;
+}
 
-//float Polyline::calcArea() {
-//    return 0;
-//}
+float Polyline::calcArea() {
+    return 0;
+}
 
-//void Polyline::draw(void) {
-//    // use QPainter object here
-//    cout << "Drawing Polyline " << endl;
-//    for (int i = 0; i < numPoints; i++) {
-//        cout << "(" << x_values[i] << "," << y_values[i] << ")" << endl;
-//    }
-//}
+void Polyline::draw(void) {
+    // use QPainter object here
+    cout << "Drawing Polyline " << endl;
+    for (int i = 0; i < numPoints; i++) {
+        cout << "(" << x_values[i] << "," << y_values[i] << ")" << endl;
+    }
+}
 
-//void Polyline::move(int dx, int dy) {
-//    for (int i = 0; i < numPoints; i++) {
-//        x_values[i] += dx;
-//        y_values[i] += dy;
-//    }
-//}
+void Polyline::move(int dx, int dy) {
+    for (int i = 0; i < numPoints; i++) {
+        x_values[i] += dx;
+        y_values[i] += dy;
+    }
+}
 
 //// ------------------------Polygon----------------------------------------------------
 
-//float Polygon::calcPerimeter() {
-//    float sum = 0;
-//    for (int i = 0; i < numPoints ; i++) {
-//        double dx = x_values[(i + 1)%numPoints] - x_values[i];
-//        double dy = y_values[(i + 1) % numPoints] - y_values[i];
-//        sum += sqrt(dx*dx + dy*dy);
-//    }
-//    return (float)sum;
-//}
+float Polygon::calcPerimeter() {
+    float sum = 0;
+    for (int i = 0; i < numPoints ; i++) {
+        double dx = x_values[(i + 1)%numPoints] - x_values[i];
+        double dy = y_values[(i + 1) % numPoints] - y_values[i];
+        sum += sqrt(dx*dx + dy*dy);
+    }
+    return (float)sum;
+}
 
-//float Polygon::calcArea() {
-//    float area = 0;
-//    for (int i = 0; i < numPoints ; i++) {
-//        area += -y_values[i] * x_values[(i + 1)%numPoints] + x_values[i] * y_values[(i + 1)%numPoints];
-//    }
-//    area = 0.5 * abs(area);
-//    return area;
-//}
+float Polygon::calcArea() {
+    float area = 0;
+    for (int i = 0; i < numPoints ; i++) {
+        area += -y_values[i] * x_values[(i + 1)%numPoints] + x_values[i] * y_values[(i + 1)%numPoints];
+    }
+    area = 0.5 * abs(area);
+    return area;
+}
 
-//void Polygon::draw(void) {
-//    // use QPainter object here
-//    cout << "Drawing Polygon " << endl;
-//    for (int i = 0; i < numPoints; i++) {
-//        cout << "(" << x_values[i] << "," << y_values[i] << ")" << endl;
-//    }
-//}
+void Polygon::draw(void) {
+    // use QPainter object here
+    cout << "Drawing Polygon " << endl;
+    for (int i = 0; i < numPoints; i++) {
+        cout << "(" << x_values[i] << "," << y_values[i] << ")" << endl;
+    }
+}
 
-//void Polygon::move(int dx, int dy) {
-//    for (int i = 0; i < numPoints; i++) {
-//        x_values[i] += dx;
-//        y_values[i] += dy;
-//    }
-//}
+void Polygon::move(int dx, int dy) {
+    for (int i = 0; i < numPoints; i++) {
+        x_values[i] += dx;
+        y_values[i] += dy;
+    }
+}
 
 /*
     int dimension(){
