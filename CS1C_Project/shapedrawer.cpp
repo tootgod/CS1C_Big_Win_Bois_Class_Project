@@ -45,8 +45,25 @@ void ShapeDrawer::on_generateReport_clicked()
 
 void ShapeDrawer::on_logout_clicked()
 {
-    if(checkMode())
-  ui->label->setText("1");
-    else
-  ui->label->setText("0");
+
+}
+
+void ShapeDrawer::on_selectShape_windowTitleChanged(const QString &title)
+{
+
+}
+
+void ShapeDrawer::on_selectShape_activated(const QString &arg1)
+{
+
+}
+
+void ShapeDrawer::on_selectShape_activated(int index)
+{
+
+}
+
+void ShapeDrawer::on_selectShape_currentIndexChanged(int index)
+{
+    ui->shapeMenu->setCurrentIndex(index);
 }

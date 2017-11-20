@@ -28,6 +28,14 @@ private slots:
 
     void on_logout_clicked();
 
+    void on_selectShape_windowTitleChanged(const QString &title);
+
+    void on_selectShape_activated(const QString &arg1);
+
+    void on_selectShape_activated(int index);
+
+    void on_selectShape_currentIndexChanged(int index);
+
 private:
     int adminMode = 0;
     Ui::ShapeDrawer *ui;
