@@ -22,3 +22,9 @@ void MainWindow::on_pushButton_clicked()
     fun->show();
     this->hide();
 }
+
+void MainWindow::on_guestLogin_clicked()
+{
+    fun->show();
+    this->hide();
+}
