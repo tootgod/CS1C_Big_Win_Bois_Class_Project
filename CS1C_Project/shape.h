@@ -17,30 +17,17 @@ struct ShapeInfo {
     int    tempid;
     string type;
     int    dimensions[];
-    Qt::GlobalColor pencolor;
+    string pencolor;
     int    penwidth;
-    Qt::PenStyle penstyle;
-    Qt::PenCapStyle pencap;
-    Qt::PenJoinStyle penjoin;
-    Qt::GlobalColor brushcolor;
-    Qt::BrushStyle brushstyle;
-};
-
-
-enum ShapeType {
-    LINE,
-    POLYLINE,
-    POLYGON,
-    RECTANGLE,
-    SQUARE,
-    ELLIPSE,
-    CIRCLE,
-    TEXT
+    string penstyle;
+    string pencap;
+    string penjoin;
+    string brushcolor;
+    string brushstyle;
 };
 
 void InitializeMaps();
 void InitializeShapes();
-
 
 class Shape : public QWidget
 {
