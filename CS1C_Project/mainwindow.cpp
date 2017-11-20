@@ -3,6 +3,9 @@
 #include "form.h"
 #include "shapedrawer.h"
 #include <QString>
+#include <QInputDialog>
+#include <QDir>
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -19,10 +22,16 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    string password = "admin";
-
-    fun->show();
-    this->hide();
+    bool ok;
+       QString text = QInputDialog::getText(this, tr("Enter Admin Password"),
+                                            tr("Password:"), QLineEdit::Normal,
+                                            QDir::home().dirName(), &ok);
+       if (ok && !text.isEmpty())
+           if(text == "admin")
+           {
+               fun->show();
+               this->hide();
+           }
 }
 
 void MainWindow::on_guestLogin_clicked()

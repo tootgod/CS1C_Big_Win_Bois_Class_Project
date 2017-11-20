@@ -18,9 +18,9 @@
     <property name="geometry">
      <rect>
       <x>510</x>
-      <y>270</y>
+      <y>190</y>
       <width>251</width>
-      <height>151</height>
+      <height>231</height>
      </rect>
     </property>
     <property name="text">
@@ -38,29 +38,6 @@
     </property>
     <property name="text">
      <string>Login as Guest</string>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="textEdit">
-    <property name="geometry">
-     <rect>
-      <x>590</x>
-      <y>220</y>
-      <width>171</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>480</x>
-      <y>220</y>
-      <width>111</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Enter Admin/n Password</string>
     </property>
    </widget>
   </widget>

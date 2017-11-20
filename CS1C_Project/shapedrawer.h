@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "form.h"
+#include "reportgenerator.h"
 
 namespace Ui {
 class ShapeDrawer;
@@ -21,9 +22,12 @@ private slots:
 
     void on_createCircle_clicked();
 
+    void on_generateReport_clicked();
+
 private:
     Ui::ShapeDrawer *ui;
     Form *test = new Form();
+    ReportGenerator *gene = new ReportGenerator();
 };
 
 #endif // SHAPEDRAWER_H

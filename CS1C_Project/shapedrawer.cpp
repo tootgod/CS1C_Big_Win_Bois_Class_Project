@@ -24,3 +24,8 @@ void ShapeDrawer::on_createCircle_clicked()
 {
 
 }
+
+void ShapeDrawer::on_generateReport_clicked()
+{
+    gene->show();
+}

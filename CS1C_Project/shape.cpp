@@ -96,7 +96,7 @@ void InitializeShapes()
     string token;
     int    tempDim[8];
     int    loopCount;
-    char   commaHold;
+    char commaHold;
 
     InitializeMap();
     loopCount = 0;

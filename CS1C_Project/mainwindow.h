@@ -40,7 +40,7 @@ public:
 
 private slots:
     void on_pushButton_clicked();
-    void MainWindow::on_guestLogin_clicked();
+    void on_guestLogin_clicked();
 
 private:
     Ui::MainWindow *ui;

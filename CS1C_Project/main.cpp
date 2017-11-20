@@ -12,8 +12,9 @@ int main(int argc, char *argv[])
     w.show();
 
     return a.exec();
+}
     //------------Do not touch-------------------
-    Rectangle rec(10, 20, 1234, 200, 60);
+  /*  Rectangle rec(10, 20, 1234, 200, 60);
 
     cout << "--------------------------------- Testing rectangle ---------------------------------" << endl;
     cout << " " << endl;
@@ -97,7 +98,7 @@ int main(int argc, char *argv[])
 }
 
 
-/*
+
 - ellipse
 - text
 "

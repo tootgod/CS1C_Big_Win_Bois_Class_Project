@@ -14,7 +14,7 @@ using namespace std;
 struct ShapeInfo {
     int    tempid;
     QString type;
-    int    dimensions[];
+    int    dimensions[4];
     string pencolor;
     int    penwidth;
     string penstyle;
