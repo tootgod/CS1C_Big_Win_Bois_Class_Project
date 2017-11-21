@@ -5,6 +5,7 @@
 #include <QInputDialog>
 #include <QDir>
 #include <QPainter>
+#include <QVBoxLayout>
 
 int admin = 0;
 
@@ -93,9 +94,12 @@ void MainWindow::on_CreateShape_clicked()
 {
     int h = ui->shapeMenu->currentIndex();
     RenderArea * renderArea = new RenderArea();
+    QVBoxLayout *mainLayout = new QVBoxLayout();
     switch (h) {
     case 4:
-
+        mainLayout->addWidget(renderArea);
+        ui->centralWidget->setLayout(mainLayout);
+        ui->setupUi(this);
         break;
     default:
         break;

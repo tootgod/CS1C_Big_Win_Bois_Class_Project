@@ -44,7 +44,6 @@ using namespace Shapes;
 
         QRectF rect(x1, y1, width, length);
         QPen pen(QColor("blue"));
-        std::cout << "I am here." << std::endl;
         qpainter->setPen(pen);
         //qpainter->setPen(QColor("blue"));
         qpainter->drawRect(rect);

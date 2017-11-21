@@ -14,7 +14,7 @@ void RenderArea::paintEvent(QPaintEvent * /* event */)
 {
 
     QPainter painter(this);
-    Shapes::Rectangle  rect(&painter, 20, 20, 1, 100, 200);
+    Shapes::Rectangle  rect(&painter, 100, 200, 1, 100, 200);
     QColor c("red");
     //painter.setPen(c);
     //painter.drawRect(QRectF(20, 20, 100, 200));
