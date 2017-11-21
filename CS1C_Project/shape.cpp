@@ -112,7 +112,7 @@ void Line::draw(void) {
     cout << "Drawing Line x1:" << x1 << " y1:" << y1 << " x2:" << x2 << " y2 : " << y2 << endl;
 }
 
-//// ------------------------PolyLine ----------------------------------------------------
+//------------------------PolyLine ----------------------------------------------------
 
 float Polyline::calcPerimeter() {
     double sum = 0;
@@ -143,7 +143,7 @@ void Polyline::move(int dx, int dy) {
     }
 }
 
-//// ------------------------Polygon ----------------------------------------------------
+//------------------------Polygon ----------------------------------------------------
 
 float Polygon::calcPerimeter() {
     float sum = 0;
@@ -178,9 +178,3 @@ void Polygon::move(int dx, int dy) {
         y_values[i] += dy;
     }
 }
-
-/*
-    int dimension(){
-        return (r * )
-    }
-    */
