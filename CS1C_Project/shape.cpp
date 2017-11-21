@@ -1,30 +1,28 @@
 #include "shape.h"
 
-std::map<std::string, ShapeType> mapShapeType;
-
 Shape::Shape(QWidget *parent) : QWidget(parent)
 {
 
 }
 
-//void Shape::set_id(int i) {
-//id = i;
-//cout << "ID == " << id << endl;
-//}
+void Shape::set_id(int i) {
+id = i;
+cout << "ID == " << id << endl;
+}
 
-//int Shape::get_x1() {
-//    return x1;
-//}
-//int Shape::get_y1() {
-//    return y1;
-//}
+int Shape::get_x1() {
+    return x1;
+}
+int Shape::get_y1() {
+    return y1;
+}
 
-//void Shape::set_x1(int value) {
-//    x1 = value;
-//}
-//void Shape::set_y1(int value) {
-//    y1 = value;
-//}
+void Shape::set_x1(int value) {
+    x1 = value;
+}
+void Shape::set_y1(int value) {
+    y1 = value;
+}
 
 void  Shape::printPerimeter(Shape& s) {
     cout << s.calcPerimeter() << endl;
@@ -32,214 +30,6 @@ void  Shape::printPerimeter(Shape& s) {
 void  Shape::printArea(Shape& s1) {
     cout << s1.calcArea() << endl;
 }
-
-//void Shape::SetDimensions(QString fileString)
-//{
-//    switch (mapShapeType[tempShape.type])
-//    {
-//    case LINE: switch (dimIndex)
-//        {
-//        case 0: x1 = dim;
-//            break;
-//        case 1: y1 = dim;
-//            break;
-//        case 2: x2 = dim;
-//            break;
-//        case 3: y2 = dim;
-//            break;
-//        }
-//        break;
-//    case POLYLINE:
-//        break;
-//    case POLYGON:
-//        break;
-//    case RECTANGLE:
-//        break;
-//    case SQUARE:
-//        break;
-//    case ELLIPSE:
-//        break;
-//    case CIRCLE:
-//        break;
-//    case TEXT:
-//        break;
-//    }
-//}
-
-void InitializeMap()
-{
-    mapShapeType["Rectangle"] = RECTANGLE;
-    mapShapeType["Polygon"]   = POLYGON;
-    mapShapeType["Ellipse"]   = ELLIPSE;
-    mapShapeType["Circle"]    = CIRCLE;
-    mapShapeType["Line"]      = LINE;
-    mapShapeType["Polyline"]  = POLYLINE;
-    mapShapeType["Square"]    = SQUARE;
-    mapShapeType["Text"]      = TEXT;
-}
-
-
-/******************************************************************************
- * This function will receive the input file from main() and store the file
- * appropriately into the vector of Shapes. It will store each line into its own
- * specified category.
- * returns - nothing
- ******************************************************************************/
-void InitializeShapes()
-{
-    QFile inFile("InputFile.txt");
-    ShapeInfo *tempShapes = new ShapeInfo;
-    QString fileString;
-    QString dimString;
-    string tempString;
-    string token;
-    int    tempDim[8];
-
-    InitializeMap();
-
-    if (!inFile.open(QIODevice::ReadOnly))
-    {
-        cout << "The file cannot be found.\n\n";
-    }
-
-    QTextStream fin(&inFile);
-
-    /***************************************************************************
-    * While Loop - loops through storing all information on the input file into
-    * the correct category. Will continue until it reaches the end of the file
-    * or the pointer is NULL
-    ***************************************************************************/
-    while (!fin.atEnd())
-    {
-        fileString = fin.readLine();
-        fileString.remove(0,9);
-        tempShapes->tempid = fileString.toInt();
-        fileString.clear();
-
-        fileString = fin.readLine();
-        fileString.remove(0,11);
-        tempShapes->type = fileString.toStdString();
-        fileString.clear();
-
-        fileString = fin.readLine();
-        fileString.remove(0,16);
-
-        if (tempShapes->type == "Line")
-        {
-            for (int index = 0; index < 4; index++)
-            {
-                dimString = fileString.section(',', index, index);
-                dimString.remove(' ');
-                tempDim[index] = dimString.toInt();
-            }
-            fileString.clear();
-        }
-        else if (tempShapes->type == "Polyline")
-        {
-            for (int index = 0; index < 8; index++)
-            {
-                dimString = fileString.section(',', index, index);
-                dimString.remove(' ');
-                tempDim[index] = dimString.toInt();
-            }
-            fileString.clear();
-        }
-        else if (tempShapes->type == "Polygon")
-        {
-            for (int index = 0; index < 8; index++)
-            {
-                dimString = fileString.section(',', index, index);
-                dimString.remove(' ');
-                tempDim[index] = dimString.toInt();
-            }
-            fileString.clear();
-        }
-        else if (tempShapes->type == "Rectangle")
-        {
-            for (int index = 0; index < 4; index++)
-            {
-                dimString = fileString.section(',', index, index);
-                dimString.remove(' ');
-                tempDim[index] = dimString.toInt();
-            }
-            fileString.clear();
-        }
-        else if (tempShapes->type == "Square")
-        {
-            for (int index = 0; index < 3; index++)
-            {
-                dimString = fileString.section(',', index, index);
-                dimString.remove(' ');
-                tempDim[index] = dimString.toInt();
-            }
-            fileString.clear();
-        }
-        else if (tempShapes->type == "Ellipse")
-        {
-            for (int index = 0; index < 4; index++)
-            {
-                dimString = fileString.section(',', index, index);
-                dimString.remove(' ');
-                tempDim[index] = dimString.toInt();
-            }
-            fileString.clear();
-        }
-        else if (tempShapes->type == "Circle")
-        {
-            for (int index = 0; index < 3; index++)
-            {
-                dimString = fileString.section(',', index, index);
-                dimString.remove(' ');
-                tempDim[index] = dimString.toInt();
-            }
-            fileString.clear();
-        }
-        else
-        {
-            for (int index = 0; index < 4; index++)
-            {
-                dimString = fileString.section(',', index, index);
-                dimString.remove(' ');
-                tempDim[index] = dimString.toInt();
-            }
-            fileString.clear();
-        }
-
-        fileString = fin.readLine();
-        fileString.remove(0,10);
-        tempShapes->pencolor = fileString.toStdString();
-        fileString.clear();
-
-        fileString = fin.readLine();
-        fileString.remove(0,10);
-        tempShapes->penwidth = fileString.toInt();
-        fileString.clear();
-
-        fileString = fin.readLine();
-        fileString.remove(0,10);
-        tempShapes->penstyle = fileString.toStdString();
-        fileString.clear();
-
-        fileString = fin.readLine();
-        fileString.remove(0,13);
-        tempShapes->pencap = fileString.toStdString();
-        fileString.clear();
-
-        fileString = fin.readLine();
-        fileString.remove(0,14);
-        tempShapes->penjoin = fileString.toStdString();
-        fileString.clear();
-
-        fin.readLine();
-
-
-
-
-
-    }
-}
-
-
 
 
 //---------------------------Rectangle ----------------------------------

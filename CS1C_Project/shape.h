@@ -3,31 +3,10 @@
 
 #include <QWidget>
 #include <iostream>
-#include <fstream>
-#include <iostream>
-#include <sstream>
-#include <QFile>
-#include <map>
 #include <QtGui>
-#include <QTextStream>
 
 using namespace std;
 
-struct ShapeInfo {
-    int    tempid;
-    string type;
-    int    dimensions[];
-    string pencolor;
-    int    penwidth;
-    string penstyle;
-    string pencap;
-    string penjoin;
-    string brushcolor;
-    string brushstyle;
-};
-
-void InitializeMaps();
-void InitializeShapes();
 
 class Shape : public QWidget
 {
@@ -39,7 +18,7 @@ public:
     Shape();
 
     // alternative constructor
-    Shape(ShapeInfo s) : x1{s.dimensions[0]}, y1{s.dimensions[0]}, id{s.tempid}{}
+    Shape(int x1, int y1, int id_num) : x1(x1), y1(y1), id(id_num){}
 
     // copy constructor "mark constructor delete"
     Shape(const Shape& obj) = delete;
@@ -50,10 +29,6 @@ public:
     //string SetCoordinates(string )
 
     void set_id(int id_num);
-    
-    const int get_id() const{
-        return id_num;
-    }
 
     //void set_pen_color(string pen_color)
     int get_x1();
@@ -61,6 +36,7 @@ public:
 
     void set_x1(int value);
     void set_y1(int value);
+
 
     //    bool operator== (const Shape& rhs)const {
     //        return (rhs.id == id);
@@ -78,11 +54,7 @@ public:
     void printPerimeter(Shape& s);
     void printArea(Shape& s1);
 
-public slots:
-    //    void SetAll(int newId, string newStype, string newDimension, Qt::GlobalColor, int newPWidth, Qt::PenStyle, Qt::PenCapStyle, Qt::PenJoinStyle, Qt::GlobalColor, Qt::BrushStyle, string newText, Qt::GlobalColor, Qt::AlignmentFlag, int newPointSize, string newFont, QFont::Style, QFont::Weight);
-
 protected:
-
     QPen pen;
     QBrush brush;
     QFont font;
@@ -125,7 +97,7 @@ return (rhs.obj = obj);
 // class for Rectangle
 class Rectangle : public Shape {
 public:
-    Rectangle(ShapeInfo s) : Shape(s), length{s.dimension[2]}, width{s.dimension[3]} {}
+    Rectangle(int x1, int y1, int id, int length, int width) : Shape(x1, y1, id), length(length), width(width) {}
     float calcPerimeter();
     float calcArea();
     void draw(void) ;
