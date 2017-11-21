@@ -1,9 +1,11 @@
 #ifndef SHAPE_H
 #define SHAPE_H
+#define PI_VAL 3.14159265359
 
 #include <QWidget>
 #include <iostream>
 #include <QtGui>
+#include <cmath>
 
 using namespace std;
 

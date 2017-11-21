@@ -65,11 +65,11 @@ void Square::move(int dx, int dy) {
 
 //---------------------------Circle ----------------------------------
 float Circle::calcPerimeter(){
-    return (3.14159265359 * r * 2);
+    return (PI_VAL * r * 2);
 }
 
 float Circle::calcArea(){
-    return (3.14159265359 * r * r);
+    return (PI_VAL * r * r);
 }
 void Circle::draw(void) {
     // use QPainter object here
@@ -78,6 +78,20 @@ void Circle::draw(void) {
 void Circle::move(int dx, int dy) {
     x1 += dx;
     y1 += dy;
+}
+
+//---------------------------Ellipse ----------------------------------
+float Ellipse::calcPerimeter(){//Ramanujan's approximation
+    double h = pow(r - r2, 2) / pow(r + r2, 2);//h value used in calculations
+    return (PI_VAL * (r + r2) * (1 + ((3 * h) / (10 + sqrt(4 - (3 * h))))));
+}
+
+float Ellipse::calcArea(){
+    return (PI_VAL * r * r2);
+}
+void Ellipse::draw(void) {
+    // use QPainter object here
+    cout << "Drawing circ x1:" << x1 << " y1:" << y1 << " radius: " << r << endl;
 }
 
 //// ------------------------Line ----------------------------------------------------
