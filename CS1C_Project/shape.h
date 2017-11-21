@@ -119,6 +119,29 @@ protected:
     int length;
 };
 
+//Circle
+class Circle : public Shape{
+protected:
+    int r;
+public:
+    float calcPerimeter();
+    float calcArea();
+    void draw(void) ;
+    void move(int dx, int dy);
+};
+
+//Ellipse
+class Ellipse : public Circle {
+protected:
+    int r2;//minor axis (shortest distance from center point to perimeter)
+    //major axis (longest distance from center point to perimeter) is the radius (int r) in circle
+public:
+    float calcPerimeter();
+    float calcArea();
+    void draw(void) ;
+    void move(int dx, int dy);
+};
+
 //Line
 class Line : public Shape {
 public:
@@ -190,28 +213,6 @@ protected:
     int* x_values;
     int* y_values;
     int numPoints;
-};
-
-//Circle
-class Circle : public Shape{
-protected:
-    int r;
-public:
-    float calcPerimeter();
-    float calcArea();
-    void draw(void) ;
-    void move(int dx, int dy);
-}
-//Ellipse
-class Ellipse : public Circle {
-protected:
-    int r2;//minor axis (shortest distance from center point to perimeter)
-    //major axis (longest distance from center point to perimeter) is the radius (int r) in circle
-public:
-    float calcPerimeter();
-    float calcArea();
-    void draw(void) ;
-    void move(int dx, int dy);
 };
 
 //void printPerimeter(Shape& s) {

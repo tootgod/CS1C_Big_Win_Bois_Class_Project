@@ -31,7 +31,6 @@ void  Shape::printArea(Shape& s1) {
     cout << s1.calcArea() << endl;
 }
 
-
 //---------------------------Rectangle ----------------------------------
 float Rectangle::calcPerimeter(){
     return ((width + length ) * 2 );
@@ -49,7 +48,6 @@ void Rectangle::move(int dx, int dy) {
     y1 += dy;
 }
 
-
 ////---------------------------Square----------------------------------------
 float Square::calcPerimeter() {
     return (4 * length);
@@ -64,6 +62,23 @@ void Square::draw(void) {
     cout << "Drawing Square x1:" << x1 << " y1:" << y1 << " length: " << length  << endl;
 }
 void Square::move(int dx, int dy) {
+    x1 += dx;
+    y1 += dy;
+}
+
+//---------------------------Circle----------------------------------
+float Circle::calcPerimeter(){
+    return (3.14159265359 * r * 2);
+}
+
+float Circle::calcArea(){
+    return (3.14159265359 * r * r);
+}
+void Circle::draw(void) {
+    // use QPainter object here
+    cout << "Drawing circ x1:" << x1 << " y1:" << y1 << " radius: " << r << endl;
+}
+void Circle::move(int dx, int dy) {
     x1 += dx;
     y1 += dy;
 }
