@@ -215,6 +215,13 @@ protected:
     int numPoints;
 };
 
+class Text: public Shape {
+protected:
+    QFont font;
+public:
+    void draw(void);
+    void move(int dx, int dy);
+};
 //void printPerimeter(Shape& s) {
 //    cout << s.calcPerimeter() << endl;
 //}
