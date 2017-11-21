@@ -208,13 +208,13 @@ public:
     }
 
 
-    /******************************************************************************
-     * This function will receive the input file from main() and store the file
-     * appropriately into the vShape of Shapes. It will store each line into its own
-     * specified category.
-     * returns - nothing
-     ******************************************************************************/
-    vShape<S> InitializeShapes()
+/******************************************************************************
+* This function will receive the input file from main() and store the file
+* appropriately into the vShape of Shapes. It will store each line into its own
+* specified category.
+* returns - nothing
+******************************************************************************/
+vShape<S> InitializeShapes()
     {
         QFile inFile("InputFile.txt");
         ShapeInfo *tempShapes = new ShapeInfo;
@@ -233,7 +233,7 @@ public:
 
         QTextStream fin(&inFile);
 
-        /***************************************************************************
+   /***************************************************************************
     * While Loop - loops through storing all information on the input file into
     * the correct category. Will continue until it reaches the end of the file
     * or the pointer is NULL
@@ -334,40 +334,163 @@ public:
                 fileString.clear();
             }
 
+               if (tempShapes->type == "Text")
+        {
             fileString = fin.readLine();
+            fileString.remove(0,12);
+            tempShapes->txtstring = fileString.toStdString();
+            fileString.clear();
+
+            fileString = fin.readLine();
+            fileString.remove(0,11);
+            tempShapes->txtcolor = fileString.toStdString();
+            fileString.clear();
+
+            fileString = fin.readLine();
+            fileString.remove(0,15);
+            tempShapes->txtalign = fileString.toStdString();
+            fileString.clear();
+
+            fileString = fin.readLine();
+            fileString.remove(0,15);
+            tempShapes->txtpntsize = fileString.toInt();
+            fileString.clear();
+
+            fileString = fin.readLine();
+            fileString.remove(0,16);
+            tempShapes->txtfontfam = fileString.toStdString();
+            fileString.clear();
+
+            fileString = fin.readLine();
+            fileString.remove(0,15);
+            tempShapes->txtfontstyle = fileString.toStdString();
+            fileString.clear();
+
+            fileString = fin.readLine();
+            fileString.remove(0,16);
+            tempShapes->txtfontweight = fileString.toStdString();
+            fileString.clear();
+        }
+        else
+        {
+            fileString = fin.readLine();
+            qDebug() << fileString << endl;
             fileString.remove(0,10);
+            qDebug() << fileString << endl;
             tempShapes->pencolor = fileString.toStdString();
             fileString.clear();
 
             fileString = fin.readLine();
+            qDebug() << fileString << endl;
             fileString.remove(0,10);
+            qDebug() << fileString << endl;
             tempShapes->penwidth = fileString.toInt();
             fileString.clear();
 
             fileString = fin.readLine();
+            qDebug() << fileString << endl;
             fileString.remove(0,10);
+            qDebug() << fileString << endl;
             tempShapes->penstyle = fileString.toStdString();
             fileString.clear();
 
             fileString = fin.readLine();
+            qDebug() << fileString << endl;
             fileString.remove(0,13);
+            qDebug() << fileString << endl;
             tempShapes->pencap = fileString.toStdString();
             fileString.clear();
 
             fileString = fin.readLine();
+            qDebug() << fileString << endl;
             fileString.remove(0,14);
+            qDebug() << fileString << endl;
             tempShapes->penjoin = fileString.toStdString();
             fileString.clear();
 
             fin.readLine();
+        }
 
 
+        switch (shapeType)
+        {
+        case 0:
+            delete tempShapes;
+            break;
+        case 1:
+            delete tempShapes;
+            break;
+        case 2:  fileString = fin.readLine();
+            fileString.remove(0,12);
+            tempShapes->brushcolor = fileString.toStdString();
+            fileString.clear();
 
+            fileString = fin.readLine();
+            fileString.remove(0,12);
+            tempShapes->brushstyle = fileString.toStdString();
+            fileString.clear();
 
+            delete tempShapes;
+            break;
+        case 3: fileString = fin.readLine();
+            fileString.remove(0,12);
+            tempShapes->brushcolor = fileString.toStdString();
+            fileString.clear();
+
+            fileString = fin.readLine();
+            fileString.remove(0,12);
+            tempShapes->brushstyle = fileString.toStdString();
+            fileString.clear();
+
+            delete tempShapes;
+            break;
+        case 4:
+            fileString = fin.readLine();
+            fileString.remove(0,12);
+            tempShapes->brushcolor = fileString.toStdString();
+            fileString.clear();
+
+            fileString = fin.readLine();
+            fileString.remove(0,12);
+            tempShapes->brushstyle = fileString.toStdString();
+            fileString.clear();
+
+            delete tempShapes;
+            break;
+        case 5: fileString = fin.readLine();
+            fileString.remove(0,12);
+            tempShapes->brushcolor = fileString.toStdString();
+            fileString.clear();
+
+            fileString = fin.readLine();
+            fileString.remove(0,12);
+            tempShapes->brushstyle = fileString.toStdString();
+            fileString.clear();
+
+            delete tempShapes;
+            break;
+        case 6:
+            fileString = fin.readLine();
+            fileString.remove(0,12);
+            tempShapes->brushcolor = fileString.toStdString();
+            fileString.clear();
+
+            fileString = fin.readLine();
+            fileString.remove(0,12);
+            tempShapes->brushstyle = fileString.toStdString();
+            fileString.clear();
+
+            delete tempShapes;
+            break;
+        case 7: 
+            break;
 
         }
-    }
 
+
+
+    }
+}
 
 private:
     struct ShapeInfo {
