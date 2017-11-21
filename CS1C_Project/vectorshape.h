@@ -30,13 +30,13 @@ public:
         for (int i=0; i<size_v; ++i) elem[i] = 0; // elements are initialized
     }
 
-    //sort function
+    //sort functions
     //sort and comparison function will determine which comparison to do with function pointer
-    void sort(){
+    void sort(bool (*compare)(Shape, Shape)){
         for (int j = 0; j < size_v - 1; ++j) {
             int min = j;
             for (int i = j+1; i < size_v; ++i) {
-                if (/*funcion pointer to comparison function for id, perim, or area*/) {
+                if (compare(this->at(min), this->at(i))) {
                     min = i;
                 }
             }
@@ -44,16 +44,19 @@ public:
                 swap(sort.at(j), sort.at(min));
         }
     }
-
+    void sort(){//default sort call will sorted by ID
+        sort(compareID);
+    }
     bool compareID(Shape* s1, Shape* s2){//return true if s1 has a larger id than s2
         return s1->get_id() > s2->get_id();
     }
     bool compareArea(Shape* s1, Shape* s2){//return true if s1 has a larger area than s2
         return s1->calcArea() > s2->calcArea();
     }
-    bool comparePerim(Shape* s1, Shape* s2){//return true if s1 has a larger perimeter than s2
+    bool comparePerimeter(Shape* s1, Shape* s2){//return true if s1 has a larger perimeter than s2
         return s1->calcPerimeter() > s2->calcPerimeter();
     }
+    //end of sort functions
 
     vShape(const vShape& src) : size_v{src.size_v}, elem{new double[src.size_v]}, space{src.space} // copy constructor
     {
