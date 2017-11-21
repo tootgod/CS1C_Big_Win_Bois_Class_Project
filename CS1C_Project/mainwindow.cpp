@@ -99,7 +99,6 @@ void MainWindow::on_CreateShape_clicked()
     case 4:
         mainLayout->addWidget(renderArea);
         ui->centralWidget->setLayout(mainLayout);
-        ui->setupUi(this);
         break;
     default:
         break;
