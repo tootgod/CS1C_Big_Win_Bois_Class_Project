@@ -114,7 +114,6 @@ public:
     float calcPerimeter();
     float calcArea();
     void draw(void);
-    void move(int dx, int dy);
 protected:
     int length;
 };
@@ -139,7 +138,6 @@ public:
     float calcPerimeter();
     float calcArea();
     void draw(void) ;
-    void move(int dx, int dy);
 };
 
 //Line

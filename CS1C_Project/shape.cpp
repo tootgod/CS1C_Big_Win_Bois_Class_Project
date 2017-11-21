@@ -1,5 +1,6 @@
 #include "shape.h"
 
+//---------------------------Shape ----------------------------------
 Shape::Shape(QWidget *parent) : QWidget(parent)
 {
 
@@ -43,12 +44,8 @@ void Rectangle::draw(void) {
     // use QPainter object here
     cout << "Drawing rect x1:" << x1 << " y1:" << y1 << " length: " << length << " width: " << width << endl;
 }
-void Rectangle::move(int dx, int dy) {
-    x1 += dx;
-    y1 += dy;
-}
 
-////---------------------------Square----------------------------------------
+////---------------------------Square ----------------------------------------
 float Square::calcPerimeter() {
     return (4 * length);
 }
@@ -66,7 +63,7 @@ void Square::move(int dx, int dy) {
     y1 += dy;
 }
 
-//---------------------------Circle----------------------------------
+//---------------------------Circle ----------------------------------
 float Circle::calcPerimeter(){
     return (3.14159265359 * r * 2);
 }
@@ -83,7 +80,7 @@ void Circle::move(int dx, int dy) {
     y1 += dy;
 }
 
-//// ------------------------Line----------------------------------------------------
+//// ------------------------Line ----------------------------------------------------
 
 
 float Line::calcPerimeter() {
@@ -101,12 +98,7 @@ void Line::draw(void) {
     cout << "Drawing Line x1:" << x1 << " y1:" << y1 << " x2:" << x2 << " y2 : " << y2 << endl;
 }
 
-void Line::move(int dx, int dy) {
-    x1 += dx;
-    y1 += dy;
-}
-
-//// ------------------------PolyLine----------------------------------------------------
+//// ------------------------PolyLine ----------------------------------------------------
 
 float Polyline::calcPerimeter() {
     double sum = 0;
@@ -137,7 +129,7 @@ void Polyline::move(int dx, int dy) {
     }
 }
 
-//// ------------------------Polygon----------------------------------------------------
+//// ------------------------Polygon ----------------------------------------------------
 
 float Polygon::calcPerimeter() {
     float sum = 0;
