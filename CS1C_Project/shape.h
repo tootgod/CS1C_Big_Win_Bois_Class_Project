@@ -95,16 +95,15 @@ return (rhs.obj = obj);
 */
 
 // class for Rectangle
-class Rectangle : public Shape {
+class Rectangle : public Square {
 public:
-    Rectangle(int x1, int y1, int id, int length, int width) : Shape(x1, y1, id), length(length), width(width) {}
+    Rectangle(int x1, int y1, int id, int length, int width) : Shape(x1, y1, id), Square(length), width{width} {}
     float calcPerimeter();
     float calcArea();
     void draw(void) ;
     void move(int dx, int dy);
 protected:
     int width;
-    int length;
 };
 
 
