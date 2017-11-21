@@ -1,118 +1,109 @@
-#ifndef SHAPE_H
-#define SHAPE_H
+#ifndef SHAPE
+#define SHAPE
 
-#include <QWidget>
-#include <iostream>
-#include <fstream>
-#include <iostream>
-#include <sstream>
-#include <QFile>
-#include <map>
-#include <QtGui>
-#include <QTextStream>
+#include <iostream> 
+#include <QPainter>
 
 using namespace std;
 
-struct ShapeInfo {
-    int    tempid;
-    string type;
-    int    dimensions[];
-    string pencolor;
-    int    penwidth;
-    string penstyle;
-    string pencap;
-    string penjoin;
-    string brushcolor;
-    string brushstyle;
-};
+//const int SIZE = 5;
+//enum PenColor { white = 1, black, red, green, blue, cyan, magenta, yellow, gray };
+//const string COLORS[9] = { "white", "black", "red", "green", "blue", "cyan", "magenta", "yellow", "gray " };
 
-void InitializeMaps();
-void InitializeShapes();
+namespace Shapes {
 
-class Shape : public QWidget
-{
-    Q_OBJECT
+class Shape {
 public:
-    Shape(QWidget *parent = 0);
+	// default constructor 
+    //
+    Shape(QPainter * painter, int id_num): qpainter(painter), id(id_num) {}
 
-    // default constructor
-    Shape();
+	// alternative constructor 
+    // assin pointer
+    // using pointer
+    Shape(QPainter * painter, int x1, int y1, int id_num) : qpainter(painter), x1(x1), y1(y1), id(id_num){}
+	
+	// copy constructor "mark constructor delete"
+	Shape(const Shape& obj) = delete;
+	
+	// disable assigment operator 
+	Shape & operator = (const Shape& obj) = delete;
 
-    // alternative constructor
-    Shape(ShapeInfo s) : x1{s.dimensions[0]}, y1{s.dimensions[0]}, id{s.tempid}{}
+	void set_id(int id_num);
 
-    // copy constructor "mark constructor delete"
-    Shape(const Shape& obj) = delete;
+	//void set_pen_color(string pen_color)
+	int get_x1();
+	int get_y1();
 
-    // disable assigment operator
-    Shape & operator = (const Shape& obj) = delete;
+	void set_x1(int value);
+	void set_y1(int value);
 
-    //string SetCoordinates(string )
-
-    void set_id(int id_num);
-    
-    const int get_id() const{
-        return id_num;
+    void setPenStyle(Qt::PenStyle ps){
+        penStyle = ps;
     }
 
-    //void set_pen_color(string pen_color)
-    int get_x1();
-    int get_y1();
+    void setPenColor(QColor color){
+        penColor = color;
+    }
 
-    void set_x1(int value);
-    void set_y1(int value);
+	bool operator== (const Shape& rhs)const {
+		return (rhs.id == id);
+	}
 
-    //    bool operator== (const Shape& rhs)const {
-    //        return (rhs.id == id);
-    //    }
+	//friend bool operator< (const Shape& sh_1, const Shape& sh_2);
 
-    //friend bool operator< (const Shape& sh_1, const Shape& sh_2);
-
-    // need Qpatiner library
-    virtual void draw(void) = 0;
-    virtual void move(int dx, int dy) = 0; // dx --> changing x , dy -- > chnaging y
-    virtual float calcPerimeter() = 0;
-    virtual float calcArea() = 0;
+	// need Qpatiner library 
+    virtual void draw() = 0;
+	virtual void move(int dx, int dy) = 0; // dx --> changing x , dy -- > chnaging y 
+	virtual float calcPerimeter() = 0;
+	virtual float calcArea() = 0;
 
 
-    void printPerimeter(Shape& s);
-    void printArea(Shape& s1);
-
-public slots:
-    //    void SetAll(int newId, string newStype, string newDimension, Qt::GlobalColor, int newPWidth, Qt::PenStyle, Qt::PenCapStyle, Qt::PenJoinStyle, Qt::GlobalColor, Qt::BrushStyle, string newText, Qt::GlobalColor, Qt::AlignmentFlag, int newPointSize, string newFont, QFont::Style, QFont::Weight);
-
+	void printPerimeter(Shape& s);
+	void printArea(Shape& s1);
 protected:
-
-    QPen pen;
-    QBrush brush;
-    QFont font;
-
-    int id;
+    QPainter * qpainter;  // define Qpainter pointer, "qpainter"
     int x1;
     int y1;
-    int x2;
-    int y2;
-    int x3;
-    int y3;
+	int id;
+    Qt::PenStyle penStyle;
+    Qt::PenCapStyle capStyle;
+    Qt::PenJoinStyle joinStyle;
+    QColor penColor;
+    QBrush brush;
+    qreal penWidth;
 
-    /*
-    int textPointerSize() {
-        int TextPointSize[51];
-        for (int i = -1; i < 52; i++) {
-            TextPointSize[i] = i;
-            return TextPointSize[i];
-        }
-    }
-    TextFontFamily: Comic Sans MS, Courier, Helvetica, Times [string]
-    enum TextFontStyle { StyleNormal, StyleItalic, StyleObliqu };
-    enum TextFontWeight { Thin, Light, Normal, Bold };
-    */
 
+
+
+	/*
+	enum PenStyle { NoPen, SolidLine, DashLine, DotLine, DashDotLine, DashDotDotLine };
+	enum PenCapStyle { FlatCap, SquareCap, RoundCap };
+	enum PenJoinStyle { MiterJoin, BevelJoin, RoundJoin };
+	enum BrushColor { white, black, red, green, blue, cyan, magenta, yellow, gray };
+	enum BrushStyle { SolidPattern, HorPattern, VerPattern, NoBrush };
+	enum TextString {};
+	enum TextColor { white, black, red, green, blue, cyan, magenta, yellow, gray };
+	enum TextAlignment { AlignLeft, AlignRight, AlignTop, AlignBottom, AlignCenter };
+	
+	int textPointerSize() {
+		int TextPointSize[51];
+		for (int i = -1; i < 52; i++) {
+			TextPointSize[i] = i;
+			return TextPointSize[i];
+
+		}
+	}
+
+	TextFontFamily: Comic Sans MS, Courier, Helvetica, Times [string]
+	enum TextFontStyle { StyleNormal, StyleItalic, StyleObliqu };
+	enum TextFontWeight { Thin, Light, Normal, Bold };
+	*/
 };
 
 /*
 bool operator< (const Shape& sh_1, const Shape& sh_2) {
-    return sh_1.id < sh_2.id;
+	return sh_1.id < sh_2.id;
 }
 */
 
@@ -125,114 +116,168 @@ return (rhs.obj = obj);
 // class for Rectangle
 class Rectangle : public Shape {
 public:
-    Rectangle(ShapeInfo s) : Shape(s), length{s.dimension[2]}, width{s.dimension[3]} {}
-    float calcPerimeter();
-    float calcArea();
-    void draw(void) ;
-    void move(int dx, int dy);
+    Rectangle(QPainter * qp, int x1, int y1, int id, int length, int width) : Shape(qp, x1, y1, id), length(length), width(width) {}
+	float calcPerimeter();
+	float calcArea();
+	void draw(void) ;
+	void move(int dx, int dy);
 protected:
-    int width;
     int length;
+	int width;
+
 };
 
 
 // class for Square
 class Square : public Shape {
 public:
-    Square(int x1, int y1,int id, int length): Shape(x1, y1, id), length(length){}
-    float calcPerimeter();
-    float calcArea();
-    void draw(void);
-    void move(int dx, int dy);
+    Square(QPainter* qp, int x1, int y1,int id, int length): Shape(qp, x1, y1, id), length(length){}
+	float calcPerimeter();
+	float calcArea();
+	void draw(void);
+	void move(int dx, int dy);
 protected:
-    int length;
+	int length;
 };
 
 
 class Line : public Shape {
 public:
-    Line(int x1, int y1, int id, int x2, int y2) : Shape(x1, y1, id), x2(x2), y2(y2) {}
-    float calcPerimeter();
-    float calcArea();
-    void draw(void);
-    void move(int dx, int dy);
+    Line(QPainter * qp, int x1, int y1, int id, int x2, int y2) : Shape(qp, x1, y1, id), x2(x2), y2(y2) {}
+	float calcPerimeter();
+	float calcArea();
+	void draw(void);
+	void move(int dx, int dy);
 protected:
-    int x2;
-    int y2;
+	int x2;
+	int y2;
 };
 
-////Polyline - x1, y1, x2, y2, x3, y3, ... , xN, yN [sequence of N points]
+//Polyline - x1, y1, x2, y2, x3, y3, ... , xN, yN [sequence of N points]
 class Polyline : public Shape {
 public:
-    // deep copy
-    Polyline(int id, int numPoints, int* x_vals, int* y_vals) : Shape(x_vals[0], y_vals[0], id), numPoints(numPoints){
-        x_values = new int[numPoints]; // dynamic array
-        y_values = new int[numPoints];// dynamic array
-        for (int i = 0; i < numPoints; i++) {
-            x_values[i] = x_vals[i];
-            y_values[i] = y_vals[i];
-        }
-    }
+	// deep copy 
+    Polyline(QPainter * qp, int id, int numPoints, int* x_vals, int* y_vals) : Shape(qp, x_vals[0], y_vals[0], id), numPoints(numPoints){
 
-    ~Polyline() {
-        if (x_values)
-            delete[] x_values;
-        if (y_values)
-            delete[] y_values;
-    }
-    float calcPerimeter();
-    float calcArea();
-    void draw(void);
-    void move(int dx, int dy);
+        points = new QPoint[numPoints];
 
+		for (int i = 0; i < numPoints; i++) {
+
+            points[i] = QPoint(x_vals[i], y_vals[i]);
+		}
+	}
+
+	~Polyline() {
+        if(points)
+            delete [] points;
+	}
+	float calcPerimeter();
+	float calcArea();
+	void draw(void);
+	void move(int dx, int dy);
 protected:
-    int numPoints;
-    int* x_values;
-    int* y_values;
-};
+	int numPoints;
+    QPoint * points;
 
-//Polygon - x1, y1, x2, y2, x3, y3, ... , xN, yN
+};
+//Polygon - x1, y1, x2, y2, x3, y3, ... , xN, yN 
 class Polygon : public Shape {
 public:
 
-    // deep copy
-    Polygon(int id, int numPoints, int* x_vals, int* y_vals) : Shape(x_vals[0], y_vals[0], id), numPoints(numPoints) {
-        x_values = new int[numPoints]; // dynamic array
-        y_values = new int[numPoints];// dynamic array
+	// deep copy 
+    Polygon(QPainter *qp, int id, int numPoints, QPoint * pts): Shape(qp, id), numPoints(numPoints) {
+        points = new QPoint[numPoints]; // dynamic array
+
         for (int i = 0; i < numPoints; i++) {
-            x_values[i] = x_vals[i];
-            y_values[i] = y_vals[i];
+            points[i] = pts[i];
         }
     }
 
-    ~Polygon() {
-        if (x_values)
-            delete[] x_values;
-        if (y_values)
-            delete[] y_values;
-    }
-    float calcPerimeter();
-    float calcArea();
-    void draw(void);
-    void move(int dx, int dy);
+    Polygon(QPainter * qp, int id, int numPoints, int* x_vals, int* y_vals) : Shape(qp, x_vals[0], y_vals[0], id), numPoints(numPoints) {
+        points = new QPoint[numPoints]; // dynamic array
+
+		for (int i = 0; i < numPoints; i++) {
+            points[i] = QPoint(x_vals[i], y_vals[i]);
+		}
+	}
+
+	~Polygon() {
+        if (points)
+            delete [] points;
+	}
+	float calcPerimeter();
+	float calcArea();
+	void draw(void);
+	void move(int dx, int dy);
 protected:
-    int* x_values;
-    int* y_values;
+    QPoint * points;
     int numPoints;
 };
 
 
 class Ellipse : public Shape {
 protected:
-    int a;
-    int b;
+	int a;
+	int b;
 };
 
-//void printPerimeter(Shape& s) {
-//    cout << s.calcPerimeter() << endl;
-//}
-//void printArea(Shape& s1) {
-//    cout << s1.calcArea() << endl;
-//}
+}
 
+/*
+void printPerimeter(Shape& s) {
+	cout << s.calcPerimeter() << endl;
+}
+void printArea(Shape& s1) {
+	cout << s1.calcArea() << endl;
+}
+*/
+/*
+
+class selc_sort  {
+public:
+
+	// deep copy 
+	selc_sort(int unsorted_list[SIZE]) {
+		for (int i = 0; i < SIZE; i++) {
+			sorted_list[i] = unsorted_list[i];
+		}
+	
+	};
+
+
+	void selection_sort() {
+		for (int i = 0; i < SIZE; i++) {
+			int min = i;
+
+			for (int j = i+1; j < SIZE; j++) {
+			
+			if (sorted_list[j] < sorted_list[min]) {
+			min = j;
+			}
+		}
+		if (min != i) {
+			int temp = sorted_list[min];
+			sorted_list[min] = sorted_list[i];
+			sorted_list[i] = temp;
+			
+			}
+		}
+
+	}
+
+	void print() {
+		for (int i = 0; i < SIZE; i++) {
+			cout  << sorted_list[i] << " ";
+		}
+	}
+
+
+private:
+	int size = 5;
+	int sorted_list[SIZE];
+
+}; */
 #endif
+
+
+

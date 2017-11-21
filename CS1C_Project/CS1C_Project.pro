@@ -28,20 +28,18 @@ SOURCES += \
     shape.cpp \
     main.cpp \
     form.cpp \
-    shapedrawer.cpp \
-    vector.cpp \
-    reportgenerator.cpp
+    reportgenerator.cpp \
+    renderarea.cpp
 
 HEADERS += \
         mainwindow.h \
     shape.h \
     vector.h \
     form.h \
-    shapedrawer.h \
-    reportgenerator.h
+    reportgenerator.h \
+    renderarea.h
 
 FORMS += \
         mainwindow.ui \
     form.ui \
-    shapedrawer.ui \
     reportgenerator.ui
