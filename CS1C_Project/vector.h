@@ -93,14 +93,14 @@ public:
         return s1->calcPerimeter() > s2->calcPerimeter();
     }
     //end of sort functions
-
-    bool compareID(S* s1, S* s2){//return true if s1 has a larger id than s2
+    template <class T>
+    bool compareID(T* s1, T* s2){//return true if s1 has a larger id than s2
         return s1->get_id() > s2->get_id();
-    }
-    bool compareArea(S* s1, S* s2){//return true if s1 has a larger area than s2
+    }    template <class T>
+    bool compareArea(T* s1, T* s2){//return true if s1 has a larger area than s2
         return s1->calcArea() > s2->calcArea();
-    }
-    bool comparePerim(S* s1, S* s2){//return true if s1 has a larger perimeter than s2
+    }    template <class T>
+    bool comparePerim(T* s1, T* s2){//return true if s1 has a larger perimeter than s2
         return s1->calcPerimeter() > s2->calcPerimeter();
     }
 
