@@ -55,12 +55,12 @@ template <class S>
 Vector<S> Vector<S>::InitializeShapes()
 {
     QFile inFile("InputFile.txt");           //!<QFile type that reads the text file */
-    ShapeInfo *tempShapes = new ShapeInfo;   //!<Struct ShapeInfo object to store text file */
+    ShapeInfo *tempShapes = new ShapeInfo(); //!<Struct ShapeInfo object to store text file */
     Vector<S> temp;                          //!<Templated Vector class that stores shapes */
     QString fileString;                      //!<QString to temporarily read in the text file */
     QString dimString;                       //!<QString that stores the dimensions string to split apart */
     int     shapeType;                       //!<Int that stores the shape type and used in switch */
-    QPainter *paint;
+    QPainter *paint = new QPainter();        //!<QPainter that will create and store a paint brush */ 
 
 
     if (!inFile.open(QIODevice::ReadOnly))
