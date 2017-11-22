@@ -66,20 +66,33 @@ public:
         for (int i=0; i<size_v; ++i) elem[i] = 0;
     }
 
-    //sort function
+//sort functions
     //sort and comparison function will determine which comparison to do with function pointer
-    //    void sort(){
-    //        for (int j = 0; j < size_v - 1; ++j) {
-    //            int min = j;
-    //            for (int i = j+1; i < size_v; ++i) {
-    //                if (/*funcion pointer to comparison function for id, perim, or area*/) {
-    //                    min = i;
-    //                }
-    //            }
-    //            if (min != j)
-    //                swap(sort.at(j), sort.at(min));
-    //        }
-    //    }
+    void sort(bool (*compare)(Shape, Shape)){
+        for (int j = 0; j < size_v - 1; ++j) {
+            int min = j;
+            for (int i = j+1; i < size_v; ++i) {
+                if (compare(this->at(min), this->at(i))) {
+                    min = i;
+                }
+            }
+            if (min != j)
+                swap(sort.at(j), sort.at(min));
+        }
+    }
+    void sort(){//default sort call will sorted by ID
+        sort(compareID);
+    }
+    bool compareID(Shape* s1, Shape* s2){//return true if s1 has a larger id than s2
+        return s1->get_id() > s2->get_id();
+    }
+    bool compareArea(Shape* s1, Shape* s2){//return true if s1 has a larger area than s2
+        return s1->calcArea() > s2->calcArea();
+    }
+    bool comparePerimeter(Shape* s1, Shape* s2){//return true if s1 has a larger perimeter than s2
+        return s1->calcPerimeter() > s2->calcPerimeter();
+    }
+    //end of sort functions
 
     bool compareID(S* s1, S* s2){//return true if s1 has a larger id than s2
         return s1->get_id() > s2->get_id();
