@@ -13,7 +13,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
+    
+    RenderArea * renderArea = new RenderArea();
+    QVBoxLayout *mainLayout = new QVBoxLayout();
+    
+    mainLayout->addWidget(renderArea);
+    ui->centralWidget->setLayout(mainLayout);
 }
 
 MainWindow::~MainWindow()

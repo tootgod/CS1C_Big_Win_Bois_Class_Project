@@ -41,11 +41,16 @@ float Rectangle::calcArea(){
     return (width * length);
 }
 void Rectangle::draw(void) {
-    // use QPainter object here
     cout << "Drawing rect x1:" << x1 << " y1:" << y1 << " length: " << length << " width: " << width << endl;
+    // use QPainter object here
+    QRectF rect(x1, y1, width, length);
+    QPen pen(QColor("blue"));
+    qpainter->setPen(pen);
+    //qpainter->setPen(QColor("blue"));
+    qpainter->drawRect(rect);
 }
 
-////---------------------------Square ----------------------------------------
+//---------------------------Square ----------------------------------------
 float Square::calcPerimeter() {
     return (4 * length);
 }
@@ -55,8 +60,13 @@ float Square::calcArea() {
 }
 
 void Square::draw(void) {
+    cout << "Drawing rect x1:" << x1 << " y1:" << y1 << " length: " << length << " width: " << width << endl;
     // use QPainter object here
-    cout << "Drawing Square x1:" << x1 << " y1:" << y1 << " length: " << length  << endl;
+    QRectF rect(x1, y1, length, length);
+    QPen pen(QColor("blue"));
+    qpainter->setPen(pen);
+    //qpainter->setPen(QColor("blue"));
+    qpainter->drawRect(rect);
 }
 void Square::move(int dx, int dy) {
     x1 += dx;
@@ -71,9 +81,14 @@ float Circle::calcPerimeter(){
 float Circle::calcArea(){
     return (PI_VAL * r * r);
 }
-void Circle::draw(void) {
-    // use QPainter object here
+void Circle::draw() {
     cout << "Drawing circ x1:" << x1 << " y1:" << y1 << " radius: " << r << endl;
+    // use QPainter object here
+    QCircF circ(x1, y1, r);
+    QPen pen(QColor("blue"));
+    qpainter->setPen(pen);
+    //qpainter->setPen(QColor("blue"));
+    qpainter->drawCirc(circ);
 }
 void Circle::move(int dx, int dy) {
     x1 += dx;
@@ -81,17 +96,22 @@ void Circle::move(int dx, int dy) {
 }
 
 //---------------------------Ellipse ----------------------------------
-float Ellipse::calcPerimeter(){//Ramanujan's approximation
+float Ellipse::calcPerimeter(){//Ramanujan's approximation//r major axis r2 minor axis
     double h = pow(r - r2, 2) / pow(r + r2, 2);//h value used in calculations
     return (PI_VAL * (r + r2) * (1 + ((3 * h) / (10 + sqrt(4 - (3 * h))))));
 }
 
-float Ellipse::calcArea(){
+float Ellipse::calcArea(){//r major axis r2 minor axis
     return (PI_VAL * r * r2);
 }
 void Ellipse::draw(void) {
-    // use QPainter object here
     cout << "Drawing circ x1:" << x1 << " y1:" << y1 << " radius: " << r << endl;
+    // use QPainter object here
+    QElliF elli(x1, y1, r);
+    QPen pen(QColor("blue"));
+    qpainter->setPen(pen);
+    //qpainter->setPen(QColor("blue"));
+    qpainter->drawElli(elli);
 }
 
 //// ------------------------Line ----------------------------------------------------
@@ -107,8 +127,14 @@ float Line::calcArea() {
     return 0;
 }
 
-void Line::draw(void) {
+void Line::draw() {
     // use QPainter object here
+    QPoint a(x1, y1);
+    QPoint b(x2, y2);
+    QLineF line(a,b);
+    QPen pen(brush, penWidth, penStyle, capStyle, joinStyle);
+    qpainter->setPen(pen);
+    qpainter->drawLine(a,b);
     cout << "Drawing Line x1:" << x1 << " y1:" << y1 << " x2:" << x2 << " y2 : " << y2 << endl;
 }
 
@@ -130,6 +156,9 @@ float Polyline::calcArea() {
 
 void Polyline::draw(void) {
     // use QPainter object here
+    QPen pen(brush, penWidth, penStyle, capStyle, joinStyle);
+    qpainter->setPen(pen);
+    qpainter->drawPolyline(points, numPoints);
     cout << "Drawing Polyline " << endl;
     for (int i = 0; i < numPoints; i++) {
         cout << "(" << x_values[i] << "," << y_values[i] << ")" << endl;
@@ -166,6 +195,9 @@ float Polygon::calcArea() {
 
 void Polygon::draw(void) {
     // use QPainter object here
+    QPen pen(brush, penWidth, penStyle, capStyle, joinStyle);
+    qpainter->setPen(pen);
+    qpainter->drawPolygon(points, numPoints); // uses default fill rule EvenOdd
     cout << "Drawing Polygon " << endl;
     for (int i = 0; i < numPoints; i++) {
         cout << "(" << x_values[i] << "," << y_values[i] << ")" << endl;
