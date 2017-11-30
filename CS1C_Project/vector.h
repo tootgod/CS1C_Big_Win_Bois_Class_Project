@@ -68,6 +68,7 @@ public:
 
 //sort functions
     //sort and comparison function will determine which comparison to do with function pointer
+    template <class S>
     void sort(bool (*compare)(S*, S*)){
         for (int j = 0; j < size_v - 1; ++j) {
             int min = j;
