@@ -343,4 +343,5 @@ Vector<S> Vector<S>::InitializeShapes()
         temp.push_back(tempShapes);
 
     }
+    return temp;
 }
