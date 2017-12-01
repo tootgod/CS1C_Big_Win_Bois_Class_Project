@@ -60,7 +60,7 @@ Vector<S> Vector<S>::InitializeShapes()
     QString fileString;                      //!<QString to temporarily read in the text file */
     QString dimString;                       //!<QString that stores the dimensions string to split apart */
     int     shapeType;                       //!<Int that stores the shape type and used in switch */
-    QPainter *paint = new QPainter();        //!<QPainter that will create and store a paint brush */ 
+    QPainter *paint = new QPainter();        //!<QPainter that will create and store a paint brush */
 
 
     if (!inFile.open(QIODevice::ReadOnly))
@@ -340,6 +340,7 @@ Vector<S> Vector<S>::InitializeShapes()
             break;
 
         }
+        temp.push_back(tempShapes);
 
     }
 }
