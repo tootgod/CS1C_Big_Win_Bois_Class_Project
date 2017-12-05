@@ -1,15 +1,15 @@
 #include "mainwindow.h"
-#include <QApplication>
+//#include <QApplication>
 #include "shape.h"
 #include <stdlib.h>
 
 
 int main(int argc, char *argv[]){
-    //------------Runs QT Program----------------
+    /*//------------Runs QT Program----------------
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
-
+*/
     //Vector<Shape> v(20);
     //------------Whitebox testing-------------------
     QPainter *qp = &a;
@@ -102,5 +102,5 @@ int main(int argc, char *argv[]){
     system("pause");
     
     
-    return a.exec();
+    //return a.exec();
 }
