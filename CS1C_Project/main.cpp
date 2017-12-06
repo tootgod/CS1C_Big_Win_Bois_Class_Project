@@ -9,14 +9,14 @@ int main(int argc, char *argv[]){
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
+    QPainter *qp = &a;
 */
     //Vector<Shape> v(20);
     //------------Whitebox testing-------------------
-    QPainter *qp = &a;
     cout << "--------------------------------- Testing rectangle ---------------------------------" << endl;
     cout << " " << endl;
 
-    Rectangle rec(qp, 10, 20, 1234, 200, 60);
+    Rectangle rec(10, 20, 1234, 200, 60);
     rec.set_id(1);
 
     cout << "For Rectangle, calculate area " << rec.calcArea() << endl;
@@ -29,7 +29,7 @@ int main(int argc, char *argv[]){
     cout << "--------------------------------- Testing Square ---------------------------------" << endl;
     cout << " " << endl;
 
-    Square sqr(qp, 10, 20, 1235, 45);
+    Square sqr(10, 20, 1235, 45);
 
     cout << "For Square, calculate area " << sqr.calcArea() << endl;
 
@@ -41,7 +41,7 @@ int main(int argc, char *argv[]){
     cout << "--------------------------------- Testing Circle ---------------------------------" << endl;
     cout << " " << endl;
     
-    Circle crc(qp, 10, 20, 1236, 45);
+    Circle crc(10, 20, 1236, 45);
     
     cout << "For Circle, calculate area " << crc.calcArea() << endl;
     
@@ -53,7 +53,7 @@ int main(int argc, char *argv[]){
     cout << "--------------------------------- Testing Ellipse ---------------------------------" << endl;
     cout << " " << endl;
     
-    Ellipse ell(qp, 10, 20, 1236, 45, 40);
+    Ellipse ell(10, 20, 1236, 45, 40);
     
     cout << "For Ellipse, calculate area " << ell.calcArea() << endl;
     
@@ -67,7 +67,7 @@ int main(int argc, char *argv[]){
 
     int x_points2[4] = { 1, 3, 3, 1 };  // area 8
     int y_points2[4] = { 1, 1, 5, 5 };  // perimeter = 2 + 2 + 4 + 4 = 12
-    Polygon polygon(qp, 44444, 4, x_points2, y_points2);
+    Polygon polygon(44444, 4, x_points2, y_points2);
 
     cout << "For Polygon, calculate area " << polygon.calcArea() << endl;
 
@@ -78,7 +78,7 @@ int main(int argc, char *argv[]){
 
     cout << "--------------------------------- Line ---------------------------------" << endl;
 
-    Line line(qp, 30, 50, 33333, 30, 70);
+    Line line(30, 50, 33333, 30, 70);
 
     cout << "For line, calculate area " << line.calcArea() << endl;
     
@@ -91,7 +91,7 @@ int main(int argc, char *argv[]){
 
     int x_points[4] = { 1, 2, 3, 4};
     int y_points[4] = { 1, 2, 3, 4};
-    Polyline polyline(qp, 1237, 4, x_points, y_points);
+    Polyline polyline(1237, 4, x_points, y_points);
 
     cout << "For polyline, calculate area " << polyline.calcArea() << endl;
 

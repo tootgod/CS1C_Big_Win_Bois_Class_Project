@@ -1,10 +1,7 @@
 #include "shape.h"
 
 //---------------------------Shape ----------------------------------
-Shape::Shape(QWidget *parent) : QWidget(parent)
-{
-
-}
+//Shape::Shape(QWidget *parent) : QWidget(parent*/){}
 
 void Shape::set_id(int i) {
 id = i;
@@ -42,12 +39,12 @@ float Rectangle::calcArea(){
 }
 void Rectangle::draw(void) {
     cout << "Drawing rect x1:" << x1 << " y1:" << y1 << " length: " << length << " width: " << width << endl;
-    // use QPainter object here
+    /* //use QPainter object here
     QRectF rect(x1, y1, width, length);
     QPen pen(QColor("blue"));
     qpainter->setPen(pen);
     //qpainter->setPen(QColor("blue"));
-    qpainter->drawRect(rect);
+    qpainter->drawRect(rect);*/
 }
 
 //---------------------------Square ----------------------------------------
@@ -61,12 +58,12 @@ float Square::calcArea() {
 
 void Square::draw(void) {
     cout << "Drawing rect x1:" << x1 << " y1:" << y1 << " length: " << length << " width: " << width << endl;
-    // use QPainter object here
+    /*// use QPainter object here
     QRectF rect(x1, y1, length, length);
     QPen pen(QColor("blue"));
     qpainter->setPen(pen);
     //qpainter->setPen(QColor("blue"));
-    qpainter->drawRect(rect);
+    qpainter->drawRect(rect);*/
 }
 void Square::move(int dx, int dy) {
     x1 += dx;
@@ -83,12 +80,12 @@ float Circle::calcArea(){
 }
 void Circle::draw() {
     cout << "Drawing circ x1:" << x1 << " y1:" << y1 << " radius: " << r << endl;
-    // use QPainter object here
+    /* //use QPainter object here
     QCircF circ(x1, y1, r);
     QPen pen(QColor("blue"));
     qpainter->setPen(pen);
     //qpainter->setPen(QColor("blue"));
-    qpainter->drawCirc(circ);
+    qpainter->drawCirc(circ);*/
 }
 void Circle::move(int dx, int dy) {
     x1 += dx;
@@ -106,16 +103,15 @@ float Ellipse::calcArea(){//r major axis r2 minor axis
 }
 void Ellipse::draw(void) {
     cout << "Drawing circ x1:" << x1 << " y1:" << y1 << " radius: " << r << endl;
-    // use QPainter object here
+    /*//use QPainter object here
     QElliF elli(x1, y1, r);
     QPen pen(QColor("blue"));
     qpainter->setPen(pen);
     //qpainter->setPen(QColor("blue"));
-    qpainter->drawElli(elli);
+    qpainter->drawElli(elli);*/
 }
 
 //// ------------------------Line ----------------------------------------------------
-
 
 float Line::calcPerimeter() {
     double dx = x2 - x1;
@@ -128,13 +124,13 @@ float Line::calcArea() {
 }
 
 void Line::draw() {
-    // use QPainter object here
+    /*//use QPainter object here
     QPoint a(x1, y1);
     QPoint b(x2, y2);
     QLineF line(a,b);
     QPen pen(brush, penWidth, penStyle, capStyle, joinStyle);
     qpainter->setPen(pen);
-    qpainter->drawLine(a,b);
+    qpainter->drawLine(a,b);*/
     cout << "Drawing Line x1:" << x1 << " y1:" << y1 << " x2:" << x2 << " y2 : " << y2 << endl;
 }
 
@@ -155,10 +151,10 @@ float Polyline::calcArea() {
 }
 
 void Polyline::draw(void) {
-    // use QPainter object here
+    /*//use QPainter object here
     QPen pen(brush, penWidth, penStyle, capStyle, joinStyle);
     qpainter->setPen(pen);
-    qpainter->drawPolyline(points, numPoints);
+    qpainter->drawPolyline(points, numPoints);*/
     cout << "Drawing Polyline " << endl;
     for (int i = 0; i < numPoints; i++) {
         cout << "(" << x_values[i] << "," << y_values[i] << ")" << endl;
@@ -194,10 +190,10 @@ float Polygon::calcArea() {
 }
 
 void Polygon::draw(void) {
-    // use QPainter object here
+    /*//use QPainter object here
     QPen pen(brush, penWidth, penStyle, capStyle, joinStyle);
     qpainter->setPen(pen);
-    qpainter->drawPolygon(points, numPoints); // uses default fill rule EvenOdd
+    qpainter->drawPolygon(points, numPoints); // uses default fill rule EvenOdd*/
     cout << "Drawing Polygon " << endl;
     for (int i = 0; i < numPoints; i++) {
         cout << "(" << x_values[i] << "," << y_values[i] << ")" << endl;

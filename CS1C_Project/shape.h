@@ -11,13 +11,13 @@ using namespace std;
 
 class Shape : public QWidget {
 public:
-    Shape(QWidget *parent = 0);
+    Shape(/*QWidget *parent = 0*/);
 
     // default constructor
-    Shape(QPainter * painter, int id_num): qpainter(painter), id(id_num) {}
+    Shape(/*QPainter * painter, */int id_num): qpainter(painter), id(id_num) {}
 
     // alternative constructor
-    Shape(QPainter * painter, int x1, int y1, int id_num) : x1(x1), y1(y1), id(id_num){}
+    Shape(/*QPainter * painter, */int x1, int y1, int id_num) : x1(x1), y1(y1), id(id_num){}
 
     // copy constructor "mark constructor delete"
     Shape(const Shape& obj) = delete;
@@ -60,13 +60,13 @@ public:
     void printArea(Shape& s1);
 
 protected:
-    QPen pen;
+    /*QPen pen;
     QBrush brush;
     QFont font;
     
     Qt::PenStyle penStyle;
     Qt::PenCapStyle capStyle;
-    Qt::PenJoinStyle joinStyle;
+    Qt::PenJoinStyle joinStyle;*/
 
     int id;
     int x1;
@@ -106,7 +106,7 @@ return (rhs.obj = obj);
 // class for Rectangle
 class Rectangle : public Square {
 public:
-    Rectangle(QPainter * qp, int x1, int y1, int id, int length, int width) : Shape(qp, x1, y1, id), Square(length), width{width} {}
+    Rectangle(/*QPainter* qp, */int x1, int y1, int id, int length, int width) : Shape(qp, x1, y1, id), Square(length), width{width} {}
     float calcPerimeter();
     float calcArea();
     void draw(void);
@@ -119,7 +119,7 @@ protected:
 // class for Square
 class Square : public Shape {
 public:
-    Square(QPainter* qp, int x1, int y1, int id, int length): Shape(qp, x1, y1, id), length{length}{}
+    Square(/*QPainter* qp, */int x1, int y1, int id, int length): Shape(qp, x1, y1, id), length{length}{}
     float calcPerimeter();
     float calcArea();
     void draw(void);
@@ -130,7 +130,7 @@ protected:
 //Circle
 class Circle : public Shape{
 public:
-    Circle(QPainter * qp, int x1, int y1, int id, int r) : Shape(qp, x1, y1, id), r{width} {}
+    Circle(/*QPainter* qp, */int x1, int y1, int id, int r) : Shape(qp, x1, y1, id), r{width} {}
     float calcPerimeter();
     float calcArea();
     void draw() ;
@@ -145,7 +145,7 @@ protected:
     int r2;//minor axis (shortest distance from center point to perimeter)
     //major axis (longest distance from center point to perimeter) is the radius (int r) in circle
 public:
-    Ellipse(QPainter * qp, int x1, int y1, int id, int a, int b) : Circle(qp, x1, y1, id, a), r2{b} {}
+    Ellipse(/*QPainter* qp, */int x1, int y1, int id, int a, int b) : Circle(qp, x1, y1, id, a), r2{b} {}
     float calcPerimeter();
     float calcArea();
     void draw() ;
@@ -153,7 +153,7 @@ public:
 
 class Line : public Shape {
 public:
-    Line(QPainter * qp, int x1, int y1, int id, int x2, int y2) : Shape(qp, x1, y1, id), x2(x2), y2(y2) {}
+    Line(/*QPainter* qp, */int x1, int y1, int id, int x2, int y2) : Shape(qp, x1, y1, id), x2(x2), y2(y2) {}
     float calcPerimeter();
     float calcArea();
     void draw();
@@ -167,7 +167,7 @@ protected:
 class Polyline : public Shape {
 public:
     // deep copy
-    Polyline(QPainter * qp, int id, int numPoints, int* x_vals, int* y_vals) : Shape(qp, x_vals[0], y_vals[0], id), numPoints(numPoints){
+    Polyline(/*QPainter* qp, */int id, int numPoints, int* x_vals, int* y_vals) : Shape(qp, x_vals[0], y_vals[0], id), numPoints(numPoints){
         
         points = new QPoint[numPoints];
         
@@ -195,7 +195,7 @@ class Polygon : public Shape {
 public:
     
     // deep copy
-    Polygon(QPainter *qp, int id, int numPoints, QPoint * pts): Shape(qp, id), numPoints(numPoints) {
+    Polygon(/*QPainter *qp, */int id, int numPoints, QPoint * pts): Shape(qp, id), numPoints(numPoints) {
         points = new QPoint[numPoints]; // dynamic array
         
         for (int i = 0; i < numPoints; i++) {
@@ -203,7 +203,7 @@ public:
         }
     }
     
-    Polygon(QPainter * qp, int id, int numPoints, int* x_vals, int* y_vals) : Shape(qp, x_vals[0], y_vals[0], id), numPoints(numPoints) {
+    Polygon(/*QPainter* qp, */int id, int numPoints, int* x_vals, int* y_vals) : Shape(qp, x_vals[0], y_vals[0], id), numPoints(numPoints) {
         points = new QPoint[numPoints]; // dynamic array
         
         for (int i = 0; i < numPoints; i++) {
