@@ -130,7 +130,7 @@ protected:
 //Circle
 class Circle : public Shape{
 public:
-    Circle(/*QPainter* qp, */int x1, int y1, int id, int r) : Shape/*(qp, */x1, y1, id), r{width} {}
+    Circle(/*QPainter* qp, */int x1, int y1, int id, int r) : Shape/*(qp, */x1, y1, id), r{r} {}
     float calcPerimeter();
     float calcArea();
     void draw() ;
